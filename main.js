@@ -58,6 +58,7 @@ app.use('/assets',express.static(__dirname + '/public'));
 var zone1 = require('./routes/zone1'); 
 var zone2 = require('./routes/zone2'); 
 var zone3 = require('./routes/zone3'); 
+var zone4 = require('./routes/zone4'); 
 var zone5 = require('./routes/zone5'); 
 var zone6 = require('./routes/zone6'); 
 var zone7 = require('./routes/zone7'); 
@@ -69,6 +70,7 @@ app.get('/',isAuthenticated,(req, res) => {
 app.use('/zone1', isAuthenticated, zone1);
 app.use('/zone2', isAuthenticated, zone2);
 app.use('/zone3', isAuthenticated, zone3);
+app.use('/zone4', isAuthenticated, zone4);
 app.use('/zone5', isAuthenticated, zone5);
 app.use('/zone6', isAuthenticated, zone6);
 app.use('/zone7', isAuthenticated, zone7);
