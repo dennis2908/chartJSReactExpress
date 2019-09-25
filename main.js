@@ -36,11 +36,6 @@ app.use(session({
 app.use(express.static(__dirname + '/public'));
 
 
-var ejs = require('ejs'); 
- ejs.open = '{{'; 
- ejs.close = '}}';
-
-
 //set views file
 app.set('views',path.join(__dirname,'views'));
 //set view engine
@@ -48,8 +43,8 @@ app.set('views',path.join(__dirname,'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 //set folder public sebagai static folder untuk static file
 app.use('/assets',express.static(__dirname + '/public'));
  
@@ -89,11 +84,21 @@ app.get('/logout',isAuthenticated,(req, res) => {
 app.post('/loginto',(req, res) => {
 	var username = req.body.username;
 	var password = req.body.password;
+	req.session.admin = 0;
 	
 	if(username=="etherus" && password=="12345")
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+	    req.session.author = "Admin";
+		req.session.loggedin = token;
+		res.redirect('/');
+	}
+	else if(username=="guest" && password=="guest")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.author = "Guest";
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
@@ -106,6 +111,7 @@ app.post('/loginto',(req, res) => {
   
 function isAuthenticated(req, res, next) {
 if (req.session.loggedin) {
+	res.locals.author = req.session.author ;
 	next();
 } else {
 	res.redirect('/login');
