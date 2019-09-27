@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const app = express();
 
+global.Promise = require('bluebird');
+
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
@@ -117,8 +119,17 @@ if (req.session.loggedin) {
 	res.redirect('/login');
 }
 }
- 
+
+const http2 = require('http2');
+
+const server = http2.createServer();
+server.on('stream', (stream, requestHeaders) => {
+  stream.respond({ ':status': 200, 'content-type': 'text/plain' });
+  stream.write('hello ');
+  stream.end('world');
+});
+
 //server listening
-app.listen(8081, () => {
-  console.log('Server is running at port 8081');
+app.listen(8082, () => {
+  console.log('Server is running at port 8082');
 });
