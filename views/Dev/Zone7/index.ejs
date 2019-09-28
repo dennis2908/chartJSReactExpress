@@ -1,0 +1,264 @@
+<% include ../../layout/header.ejs %>
+<div style="margin-left:200px">
+<center><h3>Zone 7</h3></center>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<style>
+
+.bs-example{
+   
+	margin-left:220px
+	}
+
+.blue{
+	border:5px solid blue;
+}
+.red{
+	border:5px solid red;
+}
+
+.rectangle {
+  height: 50px;
+  width: 150px;
+  background-color: #555;
+  float:left;
+  margin-bottom:5px;
+
+	font-weight: bold;
+	text-align:center;
+	margin-right:20px;
+    line-height: 45px;
+  text-align: center;
+	color:black
+}
+
+/* Tabs*/
+section {
+    padding: 60px 0;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+#tabs{
+	background: #007b5e;
+    color: #eee;
+}
+#tabs h6.section-title{
+    color: #eee;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #f3f3f3;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #eee;
+    font-size: 20px;
+}
+
+</style>
+
+<hr>
+
+<div id="new_table"></div>
+<div id="t109" class="blue rectangle">109</div><div style="clear:left"><div>
+<div id="t108" class="blue rectangle">108</div><div id="t107" class="blue rectangle">107</div><div style="clear:left"><div>
+<div id="t106" class="blue rectangle">106</div><div id="t105" class="blue rectangle">105</div><div style="clear:left"><div>
+<div id="t104" class="blue rectangle">104</div><div id="t103" class="blue rectangle">103</div><div style="clear:left"><div>
+<div id="t102" class="blue rectangle">102</div><div id="t101" class="blue rectangle">101</div><div style="clear:left"><div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+
+<script>
+function change_color(id="")
+{
+	if(document.getElementById(id).className  == "red")
+	{
+		document.getElementById(id).className  = "blue"; 
+	}
+	else
+	{
+		document.getElementById(id).className  = "red"; 
+	}
+	
+	
+}
+
+$("div").each(function(){
+	if($(this).attr('id'))
+	{
+	  if($('#'+$(this).attr('id')).attr('class')=="blue rectangle")
+	  {
+		var id = $(this).attr('id');
+		$("#"+id).draggable();
+		$('#'+id).click(function(){
+			if($('#'+id).attr('class')=="blue rectangle")
+			{
+			    $('#'+id).attr('class','red rectangle');
+					  
+			}
+			else{
+				$('#'+id).attr('class','blue rectangle');
+			}
+		});
+		
+	   }
+	}  
+
+});
+
+$('#mer_div').click(function(){
+		console.log(123213213);
+});
+
+
+function add_new_div(){
+	
+	var id = $('#form_add #table_no').val();
+	$('#new_table').append('<div id="t'+id+'" class="blue rectangle">'+id+'</div>');
+	$("#t"+id).draggable();
+    $('#t'+id).click(function() {
+            if($("#t"+id).attr('class')=="blue rectangle")
+			{
+				
+			    $("#t"+id).attr('class','red rectangle');
+					  
+			}
+			else{
+				$("#t"+id).attr('class','blue rectangle');
+			}	
+			
+	});
+	
+	$('#form_add #table_no').val('');
+	
+	
+}
+
+function delete_div(){
+	
+	var id = $('#form_del #table_no').val();
+	$('#t'+id).remove();
+	$('#form_del #table_no').val("");
+}
+
+
+function merge_div(){
+	
+	var arr = $('#tables_no').val().split(',');
+	
+	var width = 0;
+	
+	for(i=0;i<arr.length;i++)
+	{
+		width += $('#t'+arr[i]).width();
+	    if(arr[i] != +$('#tables_des').val())
+		{
+		  $('#t'+arr[i]).remove();
+		}
+	}
+	
+	$('#t'+$('#tables_des').val()).width(width);
+	
+	$('#tables_no').val('');
+	$('#tables_des').val('');
+}
+
+function div_click(id){
+	if($("#t"+id).attr('class')=="blue rectangle")
+	{
+				
+	   $("#t"+id).attr('class','red rectangle');
+					  
+	}
+	else{
+	   $("#t"+id).attr('class','blue rectangle');
+	}	
+	
+}
+</script>
+
+<!-- Tabs -->
+
+<hr>
+<section id="tabs">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 ">
+				<nav>
+					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link active" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="true">Add</a>
+						<a class="nav-item nav-link" id="nav-del-tab" data-toggle="tab" href="#nav-del" role="tab" aria-controls="nav-del" aria-selected="false">Delete</a>
+						<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Merge</a>
+					</div>
+				</nav>
+				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
+					<form class="form-horizontal" id='form_add'>
+						  <div class="form-group">
+							<label class="control-label col-sm-7" for="table_no">Table No</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="table_no" placeholder="Enter Table No">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="add_div" onclick="add_new_div()">Add</button>
+							</div>
+						</div>
+						
+					</div>
+					<div class="tab-pane fade" id="nav-del" role="tabpanel" aria-labelledby="nav-del-tab">
+						<form class="form-horizontal" id='form_del'>
+						  <div class="form-group">
+							<label class="control-label col-sm-7" for="table_no">Table No</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="table_no" placeholder="Enter Table No">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="del_div" onclick="delete_div()">Delete</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+					<form class="form-horizontal" id='form_del'>
+						  <div class="form-group">
+							<label class="control-label col-sm-12" for="tables_no">Enter Tables (Seperate With Commas)</label>
+							<div class="col-sm-12">
+							  <input type="text" class="form-control" id="tables_no" placeholder="Enter Tables">
+							</div>
+							<label class="control-label col-sm-12" for="tables_des">Merge To</label>
+							<div class="col-sm-12">
+							  <input type="text" class="form-control" id="tables_des" placeholder="Enter Table Destination">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="mer_div" onclick="merge_div()">Merge</button>
+							</div>
+						</div>
+				    </div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+</body>
+</html>

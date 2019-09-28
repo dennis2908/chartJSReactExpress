@@ -59,6 +59,8 @@ var zone4 = require('./routes/zone4');
 var zone5 = require('./routes/zone5'); 
 var zone6 = require('./routes/zone6'); 
 var zone7 = require('./routes/zone7'); 
+var zone7_dev = require('./routes/dev/zone7'); 
+
 
 app.get('/',isAuthenticated,(req, res) => {
   res.render('Zone1/index.ejs');
@@ -71,6 +73,7 @@ app.use('/zone4', isAuthenticated, zone4);
 app.use('/zone5', isAuthenticated, zone5);
 app.use('/zone6', isAuthenticated, zone6);
 app.use('/zone7', isAuthenticated, zone7);
+app.use('/zone7_dev', [isAuthenticated,isAuthenticatedDev], zone7_dev);
 
 app.get('/login',(req, res) => {
   res.render('Login/index.ejs');
@@ -93,6 +96,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 	    req.session.author = "Admin";
+		req.session.Adminauthor = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
@@ -101,6 +105,16 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.author = "Guest";
+		req.session.loggedin = token;
+		res.redirect('/');
+	}
+	else if(username=="developer" && password=="dev2019")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.Adminauthor = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
+		req.session.author = "Developer";
+		req.session.devauth = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
@@ -113,12 +127,28 @@ app.post('/loginto',(req, res) => {
   
 function isAuthenticated(req, res, next) {
 if (req.session.loggedin) {
-	res.locals.author = req.session.author ;
+	app.locals.author = req.session.author;
+	app.locals.Adminauthor = req.session.Adminauthor;
+	app.locals.devauth = req.session.devauth;
 	next();
-} else {
+} 
+else {
 	res.redirect('/login');
 }
 }
+
+function isAuthenticatedDev(req, res, next) {
+if (req.session.loggedin && req.session.devauth) {
+	app.locals.author = req.session.author;
+	app.locals.Adminauthor = req.session.Adminauthor;
+	app.locals.devauth = req.session.devauth;
+	next();
+} 
+else {
+	res.redirect('/');
+}
+}
+
 
 const http2 = require('http2');
 
@@ -130,6 +160,6 @@ server.on('stream', (stream, requestHeaders) => {
 });
 
 //server listening
-app.listen(8082, () => {
-  console.log('Server is running at port 8082');
+app.listen(8081, () => {
+  console.log('Server is running at port 8081');
 });

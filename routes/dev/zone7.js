@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/',(req, res, next) => {
       
-	res.render('Zone1/index');
+	res.render('Dev/Zone7/index.ejs');
         
 });
 	
