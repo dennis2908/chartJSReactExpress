@@ -1,7 +1,7 @@
 <% include ../../layout/header.ejs %>
 <div style="margin-left:200px">
 <center><h3>Zone 7</h3></center>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
 
 .bs-example{
@@ -9,6 +9,14 @@
 	margin-left:220px
 	}
 
+.input{
+	width:200px;
+    height:50px;
+	background:blue;
+	font-weight: bold;
+	text-align:center;
+	color:black
+}
 .blue{
 	border:5px solid blue;
 }
@@ -30,6 +38,21 @@
   text-align: center;
 	color:black
 }
+
+.rectangle_merge {
+  height: 50px;
+  width: 150px;
+  background-color: #555;
+  float:left;
+  margin-bottom:5px;
+
+	font-weight: bold;
+	text-align:center;
+    line-height: 45px;
+  text-align: center;
+	color:black
+}
+
 
 /* Tabs*/
 section {
@@ -68,131 +91,19 @@ section .section-title {
 
 </style>
 
-<hr>
-
-<div id="new_table"></div>
+<hr> 
 <div id="t109" class="blue rectangle">109</div><div style="clear:left"><div>
 <div id="t108" class="blue rectangle">108</div><div id="t107" class="blue rectangle">107</div><div style="clear:left"><div>
 <div id="t106" class="blue rectangle">106</div><div id="t105" class="blue rectangle">105</div><div style="clear:left"><div>
 <div id="t104" class="blue rectangle">104</div><div id="t103" class="blue rectangle">103</div><div style="clear:left"><div>
 <div id="t102" class="blue rectangle">102</div><div id="t101" class="blue rectangle">101</div><div style="clear:left"><div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
-
-<script>
-function change_color(id="")
-{
-	if(document.getElementById(id).className  == "red")
-	{
-		document.getElementById(id).className  = "blue"; 
-	}
-	else
-	{
-		document.getElementById(id).className  = "red"; 
-	}
-	
-	
-}
-
-$("div").each(function(){
-	if($(this).attr('id'))
-	{
-	  if($('#'+$(this).attr('id')).attr('class')=="blue rectangle")
-	  {
-		var id = $(this).attr('id');
-		$("#"+id).draggable();
-		$('#'+id).click(function(){
-			if($('#'+id).attr('class')=="blue rectangle")
-			{
-			    $('#'+id).attr('class','red rectangle');
-					  
-			}
-			else{
-				$('#'+id).attr('class','blue rectangle');
-			}
-		});
-		
-	   }
-	}  
-
-});
-
-$('#mer_div').click(function(){
-		console.log(123213213);
-});
-
-
-function add_new_div(){
-	
-	var id = $('#form_add #table_no').val();
-	$('#new_table').append('<div id="t'+id+'" class="blue rectangle">'+id+'</div>');
-	$("#t"+id).draggable();
-    $('#t'+id).click(function() {
-            if($("#t"+id).attr('class')=="blue rectangle")
-			{
-				
-			    $("#t"+id).attr('class','red rectangle');
-					  
-			}
-			else{
-				$("#t"+id).attr('class','blue rectangle');
-			}	
-			
-	});
-	
-	$('#form_add #table_no').val('');
-	
-	
-}
-
-function delete_div(){
-	
-	var id = $('#form_del #table_no').val();
-	$('#t'+id).remove();
-	$('#form_del #table_no').val("");
-}
-
-
-function merge_div(){
-	
-	var arr = $('#tables_no').val().split(',');
-	
-	var width = 0;
-	
-	for(i=0;i<arr.length;i++)
-	{
-		width += $('#t'+arr[i]).width();
-	    if(arr[i] != +$('#tables_des').val())
-		{
-		  $('#t'+arr[i]).remove();
-		}
-	}
-	
-	$('#t'+$('#tables_des').val()).width(width);
-	
-	$('#tables_no').val('');
-	$('#tables_des').val('');
-}
-
-function div_click(id){
-	if($("#t"+id).attr('class')=="blue rectangle")
-	{
-				
-	   $("#t"+id).attr('class','red rectangle');
-					  
-	}
-	else{
-	   $("#t"+id).attr('class','blue rectangle');
-	}	
-	
-}
-</script>
-
+<div id="new_table"></div>
+<div id="table_merge"></div>
 <!-- Tabs -->
 
 <hr>
-<section id="tabs">
-	<div class="container">
+<section id="tabs" style='margin-top:50px'>
+	<div class="container" id="contains">
 		<div class="row">
 			<div class="col-xs-12 ">
 				<nav>
@@ -239,11 +150,7 @@ function div_click(id){
 						  <div class="form-group">
 							<label class="control-label col-sm-12" for="tables_no">Enter Tables (Seperate With Commas)</label>
 							<div class="col-sm-12">
-							  <input type="text" class="form-control" id="tables_no" placeholder="Enter Tables">
-							</div>
-							<label class="control-label col-sm-12" for="tables_des">Merge To</label>
-							<div class="col-sm-12">
-							  <input type="text" class="form-control" id="tables_des" placeholder="Enter Table Destination">
+							  <input type="text" class="form-control" id="tables_no" value="" placeholder="Enter Tables">
 							</div>
 						  </div>
 						</form> 
@@ -260,5 +167,146 @@ function div_click(id){
 	</div>
 </section>
 </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+
+<script>
+function change_color(id="")
+{
+	if(document.getElementById(id).className  == "red")
+	{
+		document.getElementById(id).className  = "blue"; 
+	}
+	else
+	{
+		document.getElementById(id).className  = "red"; 
+	}
+	
+	
+}
+
+$("div").each(function(){
+	if($(this).attr('id'))
+	{
+		if($('#'+$(this).attr('id')).attr('class')=="blue rectangle")
+		{
+			var id = $(this).attr('id');
+			$("#"+id).draggable();
+			$('#'+id).click(function(){
+				if($('#'+id).attr('class')=="blue rectangle")
+				{
+					$('#'+id).attr('class','red rectangle');
+						  
+				}
+				else{
+					$('#'+id).attr('class','blue rectangle');
+				}
+			});
+		}
+	}
+
+});
+
+$('#mer_div').click(function(){
+		console.log(123213213);
+});
+
+
+function add_new_div(){
+	
+	var id = $('#form_add #table_no').val();
+	$('#new_table').append('<div id="t'+id+'" class="blue rectangle">'+id+'</div>');
+	$("#t"+id).draggable();
+    $('#t'+id).click(function() {
+            if($("#t"+id).attr('class')=="blue rectangle")
+			{
+				
+			    $("#t"+id).attr('class','red rectangle');
+					  
+			}
+			else{
+				$("#t"+id).attr('class','blue rectangle');
+			}	
+			
+	});
+	
+	
+}
+
+function delete_div(){
+	
+	var id = $('#form_del #table_no').val();
+	$('#t'+id).remove();
+}
+
+
+function merge_div(){
+	
+	var arr = $('#tables_no').val().split(',');
+	
+	$('#tables_no').val('');
+	
+	var width = 0;
+	
+	var div="";
+	
+	for(i=0;i<arr.length;i++)
+	{
+		
+	    
+		
+            div +="<div id='t"+arr[i]+"_merge' class='blue rectangle_merge'>"+arr[i]+"</div>";
+			$("#t"+arr[i]).remove();
+		
+		
+	}
+	
+	$('#table_merge').append('<div class="merge">'+div+'</div>');
+	
+	for(i=0;i<arr.length;i++)
+	{
+		
+	    
+		
+     		$('#t'+arr[i]+'_merge').click(function() {
+			  for(k=0;k<arr.length;k++)
+				{
+					if($('#t'+arr[k]+'_merge').attr('class')=='blue rectangle_merge')
+					{
+						$('#t'+arr[k]+'_merge').attr('class','red rectangle_merge');
+					}	
+					else{
+						$('#t'+arr[k]+'_merge').attr('class','blue rectangle_merge');
+					}
+				}
+					
+			});
+		
+		
+	}
+	$('.merge').draggable();
+
+	
+
+
+	
+}
+
+function div_click(id){
+	if($("#t"+id).attr('class')=="blue rectangle")
+	{
+				
+	   $("#t"+id).attr('class','red rectangle');
+					  
+	}
+	else{
+	   $("#t"+id).attr('class','blue rectangle');
+	}	
+	
+}
+$('#tabs').draggable();
+
+</script>
+
 </body>
 </html>
