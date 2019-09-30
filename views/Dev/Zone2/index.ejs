@@ -1,0 +1,88 @@
+<% include ../../layout/header.ejs %>
+<center><h3>Zone 2</h3></center>
+<% include ../../layout/header_dev.ejs %>
+<div id="t74" class="blue rectangle">74</div><div id="t73" class="blue rectangle">73</div><div id="t72" class="blue rectangle">72</div>
+<div id="t71" class="blue rectangle">71</div><div id="t70" class="blue rectangle">70</div>
+<div style="clear:left"><div>
+<div id="t85" class="blue rectangle">85</div><div id="t84" class="blue rectangle">84</div><div id="t83" class="blue rectangle">83</div>
+<div id="t82" class="blue rectangle">82</div><div id="t81" class="blue rectangle">81</div><div id="t80" class="blue rectangle">80</div>
+<div style="clear:left"><div>
+<div id="t97" class="blue rectangle">97</div><div id="t96" class="blue rectangle">96</div><div id="t95" class="blue rectangle">95</div>
+<div id="t94" class="blue rectangle">94</div><div id="t93" class="blue rectangle">93</div><div id="t92" class="blue rectangle">92</div>
+<div id="t91" class="blue rectangle">91</div><div id="t90" class="blue rectangle">90</div>
+<div style="clear:left"><div>
+<div id="new_table"></div>
+<div id="table_merge"></div>
+<!-- Tabs -->
+
+<hr>
+<section id="tabs" style='margin-top:50px'>
+	<div class="container" id="contains">
+		<div class="row">
+			<div class="col-xs-12 ">
+				<nav>
+					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link active" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="true">Add</a>
+						<a class="nav-item nav-link" id="nav-del-tab" data-toggle="tab" href="#nav-del" role="tab" aria-controls="nav-del" aria-selected="false">Delete</a>
+						<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Merge</a>
+					</div>
+				</nav>
+				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
+					<form class="form-horizontal" id='form_add'>
+						  <div class="form-group">
+							<label class="control-label col-sm-7" for="table_no">Table No</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="table_no" placeholder="Enter Table No">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="add_div" onclick="add_new_div()">Add</button>
+							</div>
+						</div>
+						
+					</div>
+					<div class="tab-pane fade" id="nav-del" role="tabpanel" aria-labelledby="nav-del-tab">
+						<form class="form-horizontal" id='form_del'>
+						  <div class="form-group">
+							<label class="control-label col-sm-7" for="table_no">Table No</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="table_no" placeholder="Enter Table No">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="del_div" onclick="delete_div()">Delete</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+					<form class="form-horizontal" id='form_del'>
+						  <div class="form-group">
+							<label class="control-label col-sm-12" for="tables_no">Enter Tables (Seperate With Commas)</label>
+							<div class="col-sm-12">
+							  <input type="text" class="form-control" id="tables_no" value="" placeholder="Enter Tables">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="mer_div" onclick="merge_div()">Merge</button>
+							</div>
+						</div>
+				    </div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/lib/func.js"></script>
+</body>
+</html>

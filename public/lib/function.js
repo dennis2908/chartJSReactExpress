@@ -5,15 +5,15 @@
             methods : {
                change_image : function(loc,arr=[]) {
                   for (i = 0; i < arr.length; i++) {
-					if(document.getElementById(arr[i]).className  == "green")
+					if(document.getElementById(arr[i]).className  == "blue")
 						{
 							document.getElementById(arr[i]).src = "/"+loc+"/images/"+arr[i]+"_red.jpg"; 
 							document.getElementById(arr[i]).className  = "red";
 						}
 						else
 						{
-							document.getElementById(arr[i]).src = "/"+loc+"/images/"+arr[i]+"_green.jpg"; 
-							document.getElementById(arr[i]).className  = "green";
+							document.getElementById(arr[i]).src = "/"+loc+"/images/"+arr[i]+"_blue.jpg"; 
+							document.getElementById(arr[i]).className  = "blue";
 						}
 				  } 
                }

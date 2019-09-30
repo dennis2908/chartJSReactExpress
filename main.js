@@ -59,6 +59,9 @@ var zone4 = require('./routes/zone4');
 var zone5 = require('./routes/zone5'); 
 var zone6 = require('./routes/zone6'); 
 var zone7 = require('./routes/zone7'); 
+var zone2_dev = require('./routes/dev/zone2'); 
+var zone5_dev = require('./routes/dev/zone5'); 
+var zone6_dev = require('./routes/dev/zone6'); 
 var zone7_dev = require('./routes/dev/zone7'); 
 
 
@@ -73,6 +76,9 @@ app.use('/zone4', isAuthenticated, zone4);
 app.use('/zone5', isAuthenticated, zone5);
 app.use('/zone6', isAuthenticated, zone6);
 app.use('/zone7', isAuthenticated, zone7);
+app.use('/zone2_dev', [isAuthenticated,isAuthenticatedDev], zone2_dev);
+app.use('/zone5_dev', [isAuthenticated,isAuthenticatedDev], zone5_dev);
+app.use('/zone6_dev', [isAuthenticated,isAuthenticatedDev], zone6_dev);
 app.use('/zone7_dev', [isAuthenticated,isAuthenticatedDev], zone7_dev);
 
 app.get('/login',(req, res) => {
