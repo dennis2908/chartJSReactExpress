@@ -19,8 +19,8 @@ var engine = require('ejs-blocks')
  
 var ejs = require('ejs'); 
 
- ejs.open = '{{'; 
- ejs.close = '}}';
+ejs.open = '{{';
+ejs.close = '}}';
 
 var session = require('express-session');
 
@@ -102,7 +102,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 	    req.session.author = "Admin";
-		req.session.Adminauthor = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
+		req.session.Adminauthor = 'Admin';
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
@@ -118,7 +118,7 @@ app.post('/loginto',(req, res) => {
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
-		req.session.Adminauthor = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
+		req.session.Adminauthor = 'Developer';
 		req.session.author = "Developer";
 		req.session.devauth = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
 		req.session.loggedin = token;
@@ -166,6 +166,6 @@ server.on('stream', (stream, requestHeaders) => {
 });
 
 //server listening
-app.listen(8081, () => {
-  console.log('Server is running at port 8081');
+app.listen(8082, () => {
+  console.log('Server is running at port 8082');
 });
