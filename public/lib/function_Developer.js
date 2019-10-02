@@ -7,7 +7,7 @@ function load_body(zonename){
   $('#table_1').html(localStorage[zonename]);
 }
 
-//load_body(zone);
+load_body(zone);
 
 //localStorage[zone] = "";
 
