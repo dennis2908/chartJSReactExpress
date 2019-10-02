@@ -1,6 +1,7 @@
 <% include ../layout/header.ejs %>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <!-- Save for Web Slices (Zone7.psd) -->
+<div id="table_1" style="margin-bottom:50px">
 <table id="Table_01" width="695" height="521" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="7">
@@ -12,7 +13,7 @@
 		<td rowspan="13">
 			<img src="/Zone7/images/index_02.gif" width="224" height="376" alt=""></td>
 		<td colspan="2" rowspan="2">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_03'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_03'])">
 				<img src="/Zone7/images/Zone7-1_03_green.jpg" class="green" id="Zone7-1_03" width="80" height="67" border="0" alt=""></a></td>
 		<td colspan="4">
 			<img src="/Zone7/images/index_04.gif" width="390" height="51" alt=""></td>
@@ -21,7 +22,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" rowspan="3">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_05'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_05'])">
 				<img src="/Zone7/images/Zone7-1_05_green.jpg" class="green" id="Zone7-1_05" width="81" height="67" border="0" alt=""></a></td>
 		<td colspan="2" rowspan="2">
 			<img src="/Zone7/images/index_06.gif" width="309" height="32" alt=""></td>
@@ -36,7 +37,7 @@
 	</tr>
 	<tr>
 		<td rowspan="3">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_08'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_08'])">
 				<img src="/Zone7/images/Zone7-1_08_green.jpg" class="green" id="Zone7-1_08" width="83" height="63" border="0" alt=""></a></td>
 		<td rowspan="10">
 			<img src="/Zone7/images/index_09.gif" width="226" height="293" alt=""></td>
@@ -53,7 +54,7 @@
 		<td rowspan="6">
 			<img src="/Zone7/images/index_11.gif" width="70" height="134" alt=""></td>
 		<td colspan="2" rowspan="3">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_12'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_12'])">
 				<img src="/Zone7/images/Zone7-1_12_green.jpg" id="Zone7-1_12" class="green" width="81" height="61" border="0" alt=""></a></td>
 		<td rowspan="2">
 			<img src="/Zone7/images/index_13.gif" width="10" height="33" alt=""></td>
@@ -68,7 +69,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" rowspan="3">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_15'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_15'])">
 				<img src="/Zone7/images/Zone7-1_15_green.jpg" class="green" id="Zone7-1_15" width="93" height="62" border="0" alt=""></a></td>
 		<td>
 			<img src="/Zone7/images/spacer.gif" width="1" height="28" alt=""></td>
@@ -81,7 +82,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" rowspan="2">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_17'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_17'])">
 				<img src="/Zone7/images/Zone7-1_17_green.jpg" class="green" id="Zone7-1_17" width="81" height="61" border="0" alt=""></a></td>
 		<td>
 			<img src="/Zone7/images/spacer.gif" width="1" height="22" alt=""></td>
@@ -94,13 +95,13 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_19'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_19'])">
 				<img src="/Zone7/images/Zone7-1_19_green.jpg" id="Zone7-1_19" class="green" width="80" height="52" border="0" alt=""></a></td>
 		<td colspan="2">
-			<a v-on:click = "change_image('Zone7',['Zone7-1_20'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_20'])">
 				<img src="/Zone7/images/Zone7-1_20_green.jpg" id="Zone7-1_20" class="green" width="81" height="52" border="0" alt=""></a></td>
 		<td>
-			<a v-on:click = "change_image('Zone7',['Zone7-1_21'])">
+			<a onclick = "change_image('Zone7',['Zone7-1_21'])">
 				<img src="/Zone7/images/Zone7-1_21_green.jpg" id="Zone7-1_21" class="green" width="83" height="52" border="0" alt=""></a></td>
 		<td>
 			<img src="/Zone7/images/spacer.gif" width="1" height="52" alt=""></td>
@@ -129,4 +130,14 @@
 		<td></td>
 	</tr>
 </table>
+<div id="new_table"></div>
+<div id="table_merge"></div>
+</div>
+<script>
+  var zone = "Zone7";
+</script>
+<% if(author=="Developer"){ %>
+<br/>
+<button type="submit" class="btn btn-primary" onclick="save_body('Zone7')">Save Layout</button>
+<% } %>
 <% include ../layout/footer.ejs %>
