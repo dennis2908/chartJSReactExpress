@@ -14,7 +14,7 @@ function load_body(zonename){
 
 load_body(zone);
 
-//localStorage[zone] = "";
+localStorage[zone] = "";
 
 function change_image(zone,arr=[]){				   
 		          for (i = 0; i < arr.length; i++) {

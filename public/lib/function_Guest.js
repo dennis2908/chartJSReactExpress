@@ -4,7 +4,10 @@ function save_body(zonename){
 }
 
 function load_body(zonename){
-  $('#table_1').html(localStorage[zonename]);
+	if(localStorage[zonename])
+	{	
+		$('#table_1').html(localStorage[zonename]);
+	}	
 }
 
 load_body(zone);
