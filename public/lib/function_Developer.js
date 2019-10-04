@@ -41,5 +41,4 @@ function change_image(zone,arr=[]){
 
 
 
-
 	

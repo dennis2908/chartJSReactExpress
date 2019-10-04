@@ -16,6 +16,12 @@
 				if(arrx.includes(i))
 				{
 					$(this).draggable();
+					$( this ).css('z-index','1');
+				
+					$(this).mouseover(function(){
+						$( this ).css('z-index','11');
+						console.log($( this ).css('z-index'));
+					});
 				}
 				
 				if(arrz.includes(i))
@@ -49,6 +55,10 @@
 			
 	});
 	
-	
+	function reset_index(){					
+		 $("img").css('z-index','1');
+		 $("div").css('z-index','1');
+		 alert('Z index Reset');
+	}
 	
 

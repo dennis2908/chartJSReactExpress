@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" rowspan="7">
-			<img src="/Zone1/images/index_02.gif" width="63" height="151" alt=""></td>
+			<img src="/Zone1/images/index_02.jpg" width="63" height="151" alt=""></td>
 		<td colspan="5" rowspan="5">
 			<a onclick="change_image('Zone1',['Untitled-5_03'])">
 				<img src="/Zone1/images/Untitled-5_03_green.jpg" id='Untitled-5_03' class="green" width="117" height="113" border="0" alt=""></a></td>
@@ -58,7 +58,7 @@
 	</tr>
 	<tr>
 		<td colspan="4" rowspan="2">
-			<img src="/Zone1/images/index_14.gif" width="82" height="38" alt=""></td>
+			<img src="/Zone1/images/index_14.jpg" width="82" height="38" alt=""></td>
 		<td colspan="4" rowspan="4">
 			<a onclick="change_image('Zone1',['Untitled-5_03-16'])">
 				<img src="/Zone1/images/Untitled-5_03-16_green.jpg" id="Untitled-5_03-16" class="green" width="86" height="72" border="0" alt=""></a></td>
@@ -126,11 +126,10 @@
 	</tr>
 	<tr>
 		<td colspan="3" rowspan="2">
-			<img src="/Zone1/images/index_31.gif" width="82" height="61" alt=""></td>
+			<img src="/Zone1/images/index_31.jpg" width="82" height="61" alt=""></td>
 		<td rowspan="2">
 			</td>
-		<td colspan="3">
-			<img src="/Zone1/images/index_33.gif" width="88" height="30" alt=""></td>
+		<td colspan="3"></td>
 		<td>
 			<img src="/Zone1/images/spacer.gif" width="1" height="30" alt=""></td>
 	</tr>
@@ -140,8 +139,7 @@
 		<td colspan="3" rowspan="2">
 			<a onclick="change_image('Zone1',['Untitled-5_35'])">
 				<img src="/Zone1/images/Untitled-5_35_green.jpg" id='Untitled-5_35' class="green" width="45" height="50" border="0" alt=""></a></td>
-		<td rowspan="3">
-			<img src="/Zone1/images/index_36.gif" width="10" height="76" alt=""></td>
+		<td rowspan="3"></td>
 		<td colspan="4" rowspan="3">
 			<a onclick="change_image('Zone1',['Untitled-5_37','Untitled-5_37-46'])">
 				<img src="/Zone1/images/Untitled-5_37_green.jpg" id="Untitled-5_37" width="115" class="green" height="76" border="0" alt=""></a></td>
@@ -175,8 +173,7 @@
 			<a onclick="change_image('Zone1',['Untitled-5_44'])">
 				<img src='/Zone1/images/Untitled-5_44_green.jpg' id="Untitled-5_44" class="green" width="83" height="91" border="0" alt=""></a></td>
 		<td colspan="3">
-			<a onclick="change_image('Zone1',['Untitled-5_37','Untitled-5_37-46'])">
-				<img src="/Zone1/images/Untitled-5_37-46_green.jpg" id="Untitled-5_37-46" class="green" width="87" height="26" border="0" alt=""></a></td>
+	</td>
 		<td>
 			<img src="/Zone1/images/spacer.gif" width="1" height="26" alt=""></td>
 	</tr>
@@ -199,8 +196,7 @@
 			<img src="/Zone1/images/spacer.gif" width="1" height="15" alt=""></td>
 	</tr>
 	<tr>
-		<td colspan="3" rowspan="2">
-			<img src="/Zone1/images/index_49.gif" width="79" height="211" alt=""></td>
+		<td colspan="3" rowspan="2"></td>
 		<td colspan="6">
 			<a onclick="change_image('Zone1',['Untitled-5_39'])">
 				<img src="/Zone1/images/Untitled-5_39_green.jpg" id="Untitled-5_39" class="green" width="108" height="103" border="0" alt=""></a></td>
@@ -208,8 +204,7 @@
 			<img src="/Zone1/images/spacer.gif" width="1" height="103" alt=""></td>
 	</tr>
 	<tr>
-		<td colspan="6">
-			<img src="/Zone1/images/index_51.gif" width="108" height="108" alt=""></td>
+		<td colspan="6"></td>
 		<td>
 			<img src="/Zone1/images/spacer.gif" width="1" height="108" alt=""></td>
 	</tr>
@@ -269,6 +264,7 @@
 </script>
 <% if(author=="Developer"){ %>
 <br/>
-<button type="submit" class="btn btn-primary" onclick="save_body('Zone1')">Save Layout</button>
+<button type="submit" class="btn btn-primary" onclick="save_body('Zone1')" style="margin-right:40px">Save Layout</button>
+<button type="submit" class="btn btn-primary" onclick="reset_index()">Reset Z Index</button>
 <% } %>
 <% include ../layout/footer.ejs %>
