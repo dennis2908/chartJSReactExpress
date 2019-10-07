@@ -1,9 +1,6 @@
-<hr> 
-
-<!-- Tabs -->
-
 <hr>
-<div style="float:left">
+<hr>
+<div style="float:left;margin-left:10px;">
 <section id="tabs" style='margin-top:50px'>
 	<div class="container" id="contains">
 		<div class="row">
@@ -12,7 +9,8 @@
 					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 						<a class="nav-item nav-link active" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="true">Add</a>
 						<a class="nav-item nav-link" id="nav-del-tab" data-toggle="tab" href="#nav-del" role="tab" aria-controls="nav-del" aria-selected="false">Delete</a>
-						<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Merge</a>
+						<a class="nav-item nav-link" id="nav-merge-tab" data-toggle="tab" href="#nav-merge" role="tab" aria-controls="nav-merge" aria-selected="false">Merge</a>
+						<a class="nav-item nav-link" id="nav-split-tab" data-toggle="tab" href="#nav-split" role="tab" aria-controls="nav-split" aria-selected="false">Split</a>
 					</div>
 				</nav>
 				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -47,10 +45,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-					<form class="form-horizontal" id='form_del'>
+					<div class="tab-pane fade" id="nav-merge" role="tabpanel" aria-labelledby="nav-merge-tab">
+					<form class="form-horizontal" id='form_merge'>
 						  <div class="form-group">
-							<label class="control-label col-sm-12" for="tables_no">Enter Tables (Seperate With Commas)</label>
+							<label class="control-label col-sm-12" for="tables_no">Enter Tables (Separate With Commas)</label>
 							<div class="col-sm-12">
 							  <input type="text" class="form-control" id="tables_no" value="" placeholder="Enter Tables">
 							</div>
@@ -62,13 +60,28 @@
 							</div>
 						</div>
 				    </div>
+					<div class="tab-pane fade" id="nav-split" role="tabpanel" aria-labelledby="nav-split-tab">
+					<form class="form-horizontal" id='form_split'>
+						  <div class="form-group">
+							<label class="control-label col-sm-12" for="tables_no">Enter Tables In Merge (Separate With Commas)</label>
+							<div class="col-sm-12">
+							  <input type="text" class="form-control" id="tables_split" value="" placeholder="Enter Tables">
+							</div>
+						  </div>
+						</form> 
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+							  <button type="submit" class="btn btn-primary" id="spl_div" onclick="split_div()">Split</button>
+							</div>
+						</div>
+				    </div>
 				</div>
 			
 			</div>
 		</div>
 	</div>
 </section>
-<div>
+</div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
 
@@ -99,9 +112,13 @@ $('#mer_div').click(function(){
 
 
 
-function add_new_div(){
+function add_new_div(id=''){
 	
-	var id = $('#form_add #table_no').val();
+	if(!id)
+	{
+	   var id = $('#form_add #table_no').val();
+	}
+	
 	$('#new_table').append('<div id="t'+id+'" class="border_green rectangle">'+id+'</div>');
 	$("#t"+id).draggable();
     $('#t'+id).click(function() {
@@ -133,6 +150,15 @@ function delete_div(){
 	var id = $('#form_del #table_no').val();
 	$('#t'+id).remove();
 }
+
+function split_div(){
+var arr = $('#tables_split').val().split(',');
+	for(i=0;i<arr.length;i++){
+	    $('#t'+arr[i]+'_merge').remove();
+		add_new_div(arr[i]); 
+	}
+}
+
 
 //localStorage[zone] = "";
 

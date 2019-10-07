@@ -1,6 +1,6 @@
 <% include ../layout/header.ejs %>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="table_1" style="margin-bottom:50px;float:left;margin-left:-100px">
+<div id="table_1" style="float:left;margin-left:-130px;border:10px solid black;">
 <table id="Table_01" width="647" height="684" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="21">
@@ -248,19 +248,17 @@
 		<td>
 			<img src="/Zone1/images/spacer.gif" width="78" height="1" alt=""></td>
 	</tr>
-	
+	<tr><td colspan=30><div id="new_table"></div><div id="table_merge"></div></td></tr>
 	<tr><td colspan=30><img src="/images/Legends.jpg"></td></tr>
 
 </table>
-<div id="new_table"></div>
-<div id="table_merge"></div>
 </div>
 <script>
   var zone = "Zone1";
 </script>
 <% if(author=="Developer"){ %>
 <br/>
-<button type="submit" class="btn btn-primary" onclick="save_body('Zone1')" style="margin-right:40px">Save Layout</button>
+<button type="submit" class="btn btn-primary" onclick="save_body('Zone1')" style="margin-left:10px;margin-right:40px">Save Layout</button>
 <button type="submit" class="btn btn-primary" onclick="reset_index()">Reset Z Index</button>
 <% } %>
 <% include ../layout/footer.ejs %>
