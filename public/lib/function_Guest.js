@@ -1,10 +1,13 @@
-function load_body(zonename){
-	if(localStorage[zonename])
-	{
-		
-	   $('#table_1').html(localStorage[zonename]);	
-	}
-
+function load_body(zone_id){
+	  
+	$.ajax({
+	method: "GET",	
+    url:"crud/get_by_id", 
+    data: { id: zone_id},
+    success:function(data) {
+		$('#table_1').html(data);
+	  }
+	});
 }
 
 load_body(zone);

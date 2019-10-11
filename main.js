@@ -7,7 +7,6 @@ const hbs = require('hbs');
 //use bodyParser middleware
 const bodyParser = require('body-parser');
 //use mysql database
-const mysql = require('mysql');
 const app = express();
 
 global.Promise = require('bluebird');
@@ -34,7 +33,18 @@ app.use(session({
   }
 }));
 
+var mysql = require('mysql'),
+    connection = require('express-myconnection'),
+    config = {
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      port: 3306,
+      database: 'etherus_zone'
+};
 
+app.use(connection(mysql, config, 'request'));		
+	
 app.use(express.static(__dirname + '/public'));
 
 
@@ -59,11 +69,7 @@ var zone4 = require('./routes/zone4');
 var zone5 = require('./routes/zone5'); 
 var zone6 = require('./routes/zone6'); 
 var zone7 = require('./routes/zone7'); 
-var zone2_dev = require('./routes/dev/zone2'); 
-var zone5_dev = require('./routes/dev/zone5'); 
-var zone6_dev = require('./routes/dev/zone6'); 
-var zone7_dev = require('./routes/dev/zone7'); 
-
+var crud = require('./routes/crud'); 
 
 app.get('/',isAuthenticated,(req, res) => {
   res.render('Zone1/index.ejs');
@@ -76,10 +82,7 @@ app.use('/zone4', isAuthenticated, zone4);
 app.use('/zone5', isAuthenticated, zone5);
 app.use('/zone6', isAuthenticated, zone6);
 app.use('/zone7', isAuthenticated, zone7);
-app.use('/zone2_dev', [isAuthenticated,isAuthenticatedDev], zone2_dev);
-app.use('/zone5_dev', [isAuthenticated,isAuthenticatedDev], zone5_dev);
-app.use('/zone6_dev', [isAuthenticated,isAuthenticatedDev], zone6_dev);
-app.use('/zone7_dev', [isAuthenticated,isAuthenticatedDev], zone7_dev);
+app.use('/crud', isAuthenticated, crud);
 
 app.get('/login',(req, res) => {
   res.render('Login/index.ejs');
