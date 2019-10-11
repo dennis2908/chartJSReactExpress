@@ -104,7 +104,7 @@ app.post('/loginto',(req, res) => {
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
-	    req.session.author = "Admin";
+	    req.session.author = "Developer";
 		req.session.Adminauthor = 'Admin';
 		req.session.loggedin = token;
 		res.redirect('/');
@@ -122,7 +122,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.Adminauthor = 'Developer';
-		req.session.author = "Developer";
+		req.session.author = "Admin";
 		req.session.devauth = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
 		req.session.loggedin = token;
 		res.redirect('/');
