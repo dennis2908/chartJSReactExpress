@@ -36,35 +36,24 @@ exports.save = function(req, res){
 		  body: JSON.parse(JSON.stringify(req.body.body))
 		};	  
 	  //return console.log(rows);
-	  if(rows.length > 0)
-		  connection.query("UPDATE zone set ? WHERE zone_id = ?", [data, id], function(err, row){
-		  if(err)
-			console.log("Error in Updating : %s", err);
-		  else
-			 res.send("");  
-		  
-		});
-	  else	
-		req.getConnection(function(err, connection){
-		console.log(data);
-		var query = connection.query("INSERT INTO zone set ?", data, function(err, rows, fields){
-			if(err)
-			  console.log("Error in Saving : %s", err);
-			else
-			  res.send("");      
-		});
-	  });
+	  if(rows){
+		  if(rows.length == 1)
+			  connection.query("UPDATE zone set ? WHERE zone_id = ?", [data, id], function(err, row){
+			  if(err)
+				console.log("Error in Updating : %s", err);
+			  else
+				 res.send("");  
+			  
+			});
+		  else	
+			req.getConnection(function(err, connection){
+			var query = connection.query("INSERT INTO zone set ?", data, function(err, rows, fields){
+				if(err)
+				  console.log("Error in Saving : %s", err);
+				else
+				  res.send("");      
+			});
+		  });
+	  }
 	})})
 };
-
-function parseCookies (request) {
-    var list = {},
-        rc = request.headers.cookie;
-
-    rc && rc.split(';').forEach(function( cookie ) {
-        var parts = cookie.split('=');
-        list[parts.shift().trim()] = decodeURI(parts.join('='));
-    });
-
-    return list;
-}

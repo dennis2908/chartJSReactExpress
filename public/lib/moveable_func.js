@@ -54,11 +54,5 @@
 				}
 			
 	});
-	
-	function reset_index(){					
-		 $("img").css('z-index','1');
-		 $("div").css('z-index','1');
-		 alert('Z index Reset');
-	}
-	
+ 		
 

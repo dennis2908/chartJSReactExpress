@@ -10,6 +10,22 @@ function load_body(zone_id){
 	});
 }
 
+function save_body(zone_id){
+	$.post("/crud/save",
+	{
+		body: $('#table_1').html(),
+		id: zone_id,
+	},function(data, status){
+		alert("Zone " + zone_id + " saved");
+	});
+}
+
+function reset_index(){					
+		 $("img").css('z-index','1');
+		 $("div").css('z-index','1');
+		 alert('Z index Reset');
+}
+	
 load_body(zone);
 
 

@@ -2,15 +2,20 @@ function load_body(zone_id){
 	  
 	$.ajax({
 	method: "GET",	
-    url:"crud/get_by_id", 
+    url:"/crud/get_by_id", 
     data: { id: zone_id},
     success:function(data) {
-		$('#table_1').html(data);
+		if(data)
+		{
+			$('#table_1').html(data);
+		}
+			
 	  }
 	}).done(function( data ) {
 		      $('img,div').each(function () {
 
-				var arrx = ['green','blue','red'];
+				var arrx = ['green','blue','red','green-dragging','red-dragging','blue-dragging','green ui-draggable-dragging','red ui-draggable-dragging'
+				,'red ui-draggable-dragging'];
 				var arry = ['border_red rectangle','border_green rectangle','border_blue rectangle'];
 				var arrz = ['merge'];
 				var i = $(this).attr('class');
@@ -19,6 +24,11 @@ function load_body(zone_id){
 				if(i.includes('ui-draggable'))
 				{
 					$(this).attr('class',$(this).attr('class').replace(' ui-draggable',''));
+				}
+				
+				if(i.includes('-dragging'))
+				{
+					$(this).attr('class',$(this).attr('class').replace('-dragging',''));
 				}
 				
 				var i = $(this).attr('class');
@@ -30,7 +40,6 @@ function load_body(zone_id){
 				
 					$(this).mouseover(function(){
 						$( this ).css('z-index','11');
-						console.log($( this ).css('z-index'));
 					});
 				}
 				
@@ -68,6 +77,30 @@ function load_body(zone_id){
 	});
 }
 
+function save_body(zone_id,zone_to){
+	
+	$.ajax({
+        url: "/crud/save",
+        type: "post",
+        data: {	
+			body: $('#table_1').html(),
+			id: zone_id
+		} ,
+        success: function (response) {
+           if(zone_to)
+			{
+				
+				 var loc = window.location;
+				 
+				 window.location.href = "/"+zone_to+"/";
+			}
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+}
+
 load_body(zone);
 		 
 function change_image(zone,arr=[]){				   
@@ -89,10 +122,17 @@ function change_image(zone,arr=[]){
 					}
 
 				  } 
+				  save_body(zone);
          
 }
-		 
-		
 
+function reset_index(){					
+		 $("img").css('z-index','1');
+		 $("div").css('z-index','1');
+		 save_body(zone);
+		 alert('Z index Reset');
+}	
 
-//localStorage['body'] = '';
+function redirect_to(zoneto){
+	  save_body(zone,zoneto);
+} 			

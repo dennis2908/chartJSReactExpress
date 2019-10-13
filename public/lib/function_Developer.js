@@ -1,5 +1,4 @@
 function save_body(zone_id){
-	console.log(222828);
 	$.post("/crud/save",
 	{
 		body: $('#table_1').html(),
@@ -106,7 +105,12 @@ function change_image(zone,arr=[]){
         
 }
 
+function reset_index(){					
+		 $("img").css('z-index','1');
+		 $("div").css('z-index','1');
+		 alert('Z index Reset');
+}
 
-
-
-	
+$('img').on('change', function() {
+  save_body(zone);
+});

@@ -29,7 +29,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-        expires: 600000
+        expires: new Date(253402300000000)
+		
   }
 }));
 
@@ -104,7 +105,7 @@ app.post('/loginto',(req, res) => {
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
-	    req.session.author = "Developer";
+	    req.session.author = "Admin";
 		req.session.Adminauthor = 'Admin';
 		req.session.loggedin = token;
 		res.redirect('/');
@@ -114,16 +115,6 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.author = "Guest";
-		req.session.loggedin = token;
-		res.redirect('/');
-	}
-	else if(username=="developer" && password=="dev2019")
-	{
-		let privateKey = fs.readFileSync('./private.pem', 'utf8');
-		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
-		req.session.Adminauthor = 'Developer';
-		req.session.author = "Admin";
-		req.session.devauth = 'elkeqwlkjeqwleqwkjeqwlqewjqlewkeqjwlqwelqwkekqwelkqwe';
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
