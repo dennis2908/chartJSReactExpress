@@ -4,11 +4,12 @@
 				var arry = ['border_red rectangle','border_green rectangle','border_blue rectangle'];
 				var arrz = ['merge'];
 				var i = $(this).attr('class');
-				
-			
-				if(i.includes('ui-draggable'))
+				if(i)
 				{
-					$(this).attr('class',$(this).attr('class').replace(' ui-draggable',''));
+					if(i.includes('ui-draggable'))
+					{
+						$(this).attr('class',$(this).attr('class').replace(' ui-draggable',''));
+					}
 				}
 				
 				var i = $(this).attr('class');
@@ -53,6 +54,5 @@
 					$(this).draggable();
 				}
 			
-	});
- 		
+	});	
 
