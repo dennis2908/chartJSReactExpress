@@ -20,15 +20,19 @@ function load_body(zone_id){
 				var arrz = ['merge'];
 				var i = $(this).attr('class');
 				
-			
-				if(i.includes('ui-draggable'))
+			    if(i)
 				{
+ 				  if(i.includes('ui-draggable'))
+				  {
 					$(this).attr('class',$(this).attr('class').replace(' ui-draggable',''));
+				  }
 				}
-				
-				if(i.includes('-dragging'))
+				if(i)
 				{
+				  if(i.includes('-dragging'))
+				  {
 					$(this).attr('class',$(this).attr('class').replace('-dragging',''));
+				  }
 				}
 				
 				var i = $(this).attr('class');
