@@ -39,7 +39,6 @@ function load_body(zone_id){
 				
 				if(arrx.includes(i))
 				{
-					$(this).draggable();
 					$( this ).css('z-index','1');
 				
 					$(this).mouseover(function(){
@@ -47,10 +46,6 @@ function load_body(zone_id){
 					});
 				}
 				
-				if(arrz.includes(i))
-				{
-					$(this).draggable();
-				}
 				
 				if(arry.includes(i))
 				{
