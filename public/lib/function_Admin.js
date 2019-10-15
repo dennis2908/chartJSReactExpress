@@ -121,15 +121,12 @@ function change_image(zone,arr=[]){
 							document.getElementById(arr[i]).className  = "green";
 					}
 
-				  } 
-				  save_body(zone);
-         
+				  }     
 }
 
 function reset_index(){					
 		 $("img").css('z-index','1');
 		 $("div").css('z-index','1');
-		 save_body(zone);
 		 alert('Z index Reset');
 }	
 
