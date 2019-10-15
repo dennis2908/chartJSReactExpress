@@ -21,7 +21,6 @@
 				
 					$(this).mouseover(function(){
 						$( this ).css('z-index','11');
-						console.log($( this ).css('z-index'));
 					});
 				}
 				
