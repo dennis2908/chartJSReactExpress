@@ -9,6 +9,7 @@ exports.get_by_id = function(req, res){
   var id = req.query.id;
    req.getConnection(function(err, connection){
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
+	if(rows){
 		if(rows.length > 0)
 		{
 		  return res.send(rows[0]['body']);	
@@ -17,6 +18,7 @@ exports.get_by_id = function(req, res){
 		{
 			return "";
 		}
+	}	
     });
   });
 };
