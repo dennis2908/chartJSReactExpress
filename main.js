@@ -1,3 +1,4 @@
+
 //use path module
 const path = require('path');
 //use express module
@@ -70,6 +71,13 @@ var zone4 = require('./routes/zone4');
 var zone5 = require('./routes/zone5'); 
 var zone6 = require('./routes/zone6'); 
 var zone7 = require('./routes/zone7'); 
+var zone1_only = require('./routes/zone1');
+var zone2_only = require('./routes/zone2');
+var zone3_only = require('./routes/zone3');
+var zone4_only = require('./routes/zone4');
+var zone5_only = require('./routes/zone5');
+var zone6_only = require('./routes/zone6');
+var zone7_only = require('./routes/zone7');
 var crud = require('./routes/crud'); 
 
 app.get('/',isAuthenticated,(req, res) => {
@@ -77,13 +85,20 @@ app.get('/',isAuthenticated,(req, res) => {
 });
 
 app.use('/zone1', isAuthenticated, zone1);
+app.use('/zone1_only', isAuthenticatedZone1, zone1_only);
+app.use('/zone2_only', isAuthenticatedZone2, zone2_only);
+app.use('/zone3_only', isAuthenticatedZone3, zone3_only);
+app.use('/zone4_only', isAuthenticatedZone4, zone4_only);
+app.use('/zone5_only', isAuthenticatedZone5, zone5_only);
+app.use('/zone6_only', isAuthenticatedZone6, zone6_only);
+app.use('/zone7_only', isAuthenticatedZone7, zone7_only);
 app.use('/zone2', isAuthenticated, zone2);
 app.use('/zone3', isAuthenticated, zone3);
 app.use('/zone4', isAuthenticated, zone4);
 app.use('/zone5', isAuthenticated, zone5);
 app.use('/zone6', isAuthenticated, zone6);
 app.use('/zone7', isAuthenticated, zone7);
-app.use('/crud', isAuthenticated, crud);
+app.use('/crud', crud);
 
 app.get('/login',(req, res) => {
   res.render('Login/index.ejs');
@@ -105,8 +120,10 @@ app.post('/loginto',(req, res) => {
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
-	    req.session.author = "Admin";
+	    req.session.name = "Admin";
+		req.session.author = "Admin";
 		req.session.Adminauthor = 'Admin';
+		req.session.header = '';
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
@@ -114,9 +131,82 @@ app.post('/loginto',(req, res) => {
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Guest";
+		req.session.header = '';
 		req.session.author = "Guest";
 		req.session.loggedin = token;
 		res.redirect('/');
+	}
+	else if(username=="zone1" && password=="11111")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.zone1 = token;
+		res.redirect('/zone1_only');
+	}
+	else if(username=="zone2" && password=="22222")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.zone2 = token;
+		res.redirect('/zone2_only');
+	}
+	else if(username=="zone3" && password=="33333")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.zone3 = token;
+		res.redirect('/zone3_only');
+	}
+	else if(username=="zone4" && password=="44444")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.save_loc = "/crud_each/save";
+		req.session.zone4 = token;
+		res.redirect('/zone4_only');
+	}
+	else if(username=="zone5" && password=="55555")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.zone5 = token;
+		res.redirect('/zone5_only');
+	}
+	else if(username=="zone6" && password=="66666")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.zone6 = token;
+		res.redirect('/zone6_only');
+	}
+	else if(username=="zone7" && password=="77777")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.header = '_private';
+		req.session.author = "Guest";
+		req.session.zone7 = token;
+		res.redirect('/zone7_only');
 	}
 	else
 	{
@@ -126,29 +216,116 @@ app.post('/loginto',(req, res) => {
 });
   
 function isAuthenticated(req, res, next) {
-if (req.session.loggedin) {
-	app.locals.author = req.session.author;
-	app.locals.Adminauthor = req.session.Adminauthor;
-	app.locals.devauth = req.session.devauth;
-	next();
-} 
-else {
-	res.redirect('/login');
-}
-}
-
-function isAuthenticatedDev(req, res, next) {
-if (req.session.loggedin && req.session.devauth) {
-	app.locals.author = req.session.author;
-	app.locals.Adminauthor = req.session.Adminauthor;
-	app.locals.devauth = req.session.devauth;
-	next();
-} 
-else {
-	res.redirect('/');
-}
+	if (req.session.loggedin) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.name = req.session.name;
+		app.locals.header = req.session.header;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
 }
 
+function isAuthenticatedZone1(req, res, next) {
+	if (req.session.zone1) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.name = req.session.name;
+		app.locals.header = req.session.header;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedZone2(req, res, next) {
+	if (req.session.zone2) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.header = req.session.header;
+		app.locals.name = req.session.name;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedZone3(req, res, next) {
+	if (req.session.zone3) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.header = req.session.header;
+		app.locals.name = req.session.name;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedZone4(req, res, next) {
+	if (req.session.zone4) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.header = req.session.header;
+		app.locals.name = req.session.name;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedZone5(req, res, next) {
+	if (req.session.zone5) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.header = req.session.header;
+		app.locals.name = req.session.name;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedZone6(req, res, next) {
+	if (req.session.zone6) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.header = req.session.header;
+		app.locals.name = req.session.name;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedZone7(req, res, next) {
+	if (req.session.zone7) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.header = req.session.header;
+		app.locals.name = req.session.name;
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
 
 const http2 = require('http2');
 

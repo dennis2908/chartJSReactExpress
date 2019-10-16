@@ -3,7 +3,7 @@ function load_body(zone_id){
 	$.ajax({
 	method: "GET",	
     url:"/crud/get_by_id", 
-    data: { id: zone_id},
+    data: { id: zone},
     success:function(data) {
 		if(data)
 		{
@@ -83,7 +83,7 @@ function save_body(zone_id,zone_to){
         type: "post",
         data: {	
 			body: $('#table_1').html(),
-			id: zone_id
+			id: zone
 		} ,
         success: function (response) {
            if(zone_to)

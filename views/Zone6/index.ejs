@@ -1,4 +1,8 @@
+<% if(header){ %>
+<% include ../layout/header_private.ejs %>
+<% } else{ %>
 <% include ../layout/header.ejs %>
+<% } %>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div id="table_1" style="float:left;margin-left:-130px;border:10px solid black;">
 <center><h3>8 Noodles</h3></center>
@@ -97,7 +101,7 @@
 		<td>
 			<img src="/Zone6/images/spacer.gif" width="1" height="87" alt=""></td>
 	</tr>
-	<tr><td colspan=30><img src="//Zone6/images/Legends.jpg"></td></tr>
+	<tr><td colspan=30><img src="/images/Legends.jpg"></td></tr>
 </table>
 <div id="new_table"></div>
 <div id="table_merge"></div>
@@ -106,6 +110,4 @@
   var zone = "6";
 </script>
 <br/>
-<button type="submit" class="btn btn-primary" onclick="save_body('6')" style="margin-left:10px;margin-right:40px">Save Layout</button>
-<button type="submit" class="btn btn-primary" onclick="reset_index()">Reset Z Index</button>
 <% include ../layout/footer.ejs %>

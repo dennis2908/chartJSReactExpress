@@ -83,6 +83,10 @@ function load_body(zone_id){
 
 function save_body(zone_id,zone_to){
 	
+if(!zone_id)
+{
+	zone_id=zone;
+}	
 	$.ajax({
         url: "/crud/save",
         type: "post",

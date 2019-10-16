@@ -1,4 +1,8 @@
+<% if(header){ %>
+<% include ../layout/header_private.ejs %>
+<% } else{ %>
 <% include ../layout/header.ejs %>
+<% } %>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <!-- Save for Web Slices (Zone2.psd) -->
 <div id="table_1" style="float:left;margin-left:-130px;border:10px solid black;">
@@ -274,6 +278,4 @@
   var zone = "2";
 </script>
 <br/>
-<button type="submit" class="btn btn-primary" onclick="save_body('2')" style="margin-left:10px;margin-right:40px">Save Layout</button>
-<button type="submit" class="btn btn-primary" onclick="reset_index()">Reset Z Index</button>
 <% include ../layout/footer.ejs %>

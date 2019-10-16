@@ -28,7 +28,7 @@ exports.save = function(req, res){
 	
 	var id = JSON.parse(JSON.stringify(req.body.id));
   
-  //return console.log(input);
+  console.log(id);
    req.getConnection(function(err, connection){
 	  
 	  var query = connection.query("select * from zone WHERE zone_id = "+id, function(err, rows){
