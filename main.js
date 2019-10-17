@@ -123,7 +123,7 @@ app.post('/loginto',(req, res) => {
 	    req.session.name = "Admin";
 		req.session.author = "Admin";
 		req.session.Adminauthor = 'Admin';
-		req.session.header = '';
+		req.session.menu = '_';
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
@@ -132,7 +132,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Guest";
-		req.session.header = '';
+		req.session.menu = '_';
 		req.session.author = "Guest";
 		req.session.loggedin = token;
 		res.redirect('/');
@@ -142,7 +142,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.zone1 = token;
 		res.redirect('/zone1_only');
@@ -152,7 +152,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.zone2 = token;
 		res.redirect('/zone2_only');
@@ -162,7 +162,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.zone3 = token;
 		res.redirect('/zone3_only');
@@ -172,7 +172,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.save_loc = "/crud_each/save";
 		req.session.zone4 = token;
@@ -183,7 +183,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.zone5 = token;
 		res.redirect('/zone5_only');
@@ -193,7 +193,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.zone6 = token;
 		res.redirect('/zone6_only');
@@ -203,7 +203,7 @@ app.post('/loginto',(req, res) => {
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 		req.session.name = "Private";
-		req.session.header = '_private';
+		req.session.menu = '';
 		req.session.author = "Guest";
 		req.session.zone7 = token;
 		res.redirect('/zone7_only');
@@ -221,7 +221,7 @@ function isAuthenticated(req, res, next) {
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
 		app.locals.name = req.session.name;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		next();
 	} 
 	else {
@@ -235,7 +235,7 @@ function isAuthenticatedZone1(req, res, next) {
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
 		app.locals.name = req.session.name;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		next();
 	} 
 	else {
@@ -248,7 +248,7 @@ function isAuthenticatedZone2(req, res, next) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		app.locals.name = req.session.name;
 		next();
 	} 
@@ -262,7 +262,7 @@ function isAuthenticatedZone3(req, res, next) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		app.locals.name = req.session.name;
 		next();
 	} 
@@ -276,7 +276,7 @@ function isAuthenticatedZone4(req, res, next) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		app.locals.name = req.session.name;
 		next();
 	} 
@@ -290,7 +290,7 @@ function isAuthenticatedZone5(req, res, next) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		app.locals.name = req.session.name;
 		next();
 	} 
@@ -304,7 +304,7 @@ function isAuthenticatedZone6(req, res, next) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		app.locals.name = req.session.name;
 		next();
 	} 
@@ -318,7 +318,7 @@ function isAuthenticatedZone7(req, res, next) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
-		app.locals.header = req.session.header;
+		app.locals.menu = req.session.menu;
 		app.locals.name = req.session.name;
 		next();
 	} 
