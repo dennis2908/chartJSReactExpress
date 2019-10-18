@@ -8,6 +8,10 @@
 <script type="text/javascript" src="/js/jquery.ui.touch-punch.min.js"></script>	
 <script type="text/javascript" src="/lib/moveable_func.js"></script>
 <% } %>
-<% include ../layout/footer_menu.ejs %>
+<% if(author=="Admin"){ %>
+<% include ../layout/footer_menu_Admin.ejs %>
+<% } else {%>	
+<% include ../layout/footer_menu_Guest.ejs %>
+<%}%>
 </body>
 </html>
