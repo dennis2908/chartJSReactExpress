@@ -86,13 +86,13 @@ function save_body(zone_id,zone_to){
 			id: zone
 		} ,
         success: function (response) {
-           if(zone_to)
+		    if(!zone_to)
 			{
-				
-				 var loc = window.location;
+				zone_to = "zone"+zone_id;
+			}	
+            var loc = window.location;
 				 
-				 window.location.href = "/"+zone_to+"/";
-			}
+			window.location.href = "/"+zone_to+"/";
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);
