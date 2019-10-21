@@ -145,7 +145,7 @@ function hancur2(id){
       $('#'+id).hide();
 	});
 	localStorage.clear();
-	localStorage['item'] = 5;
+	localStorage['item'] = 10;
 	timerW();
 
 };
@@ -156,7 +156,7 @@ function timerW()
 {
 	var interval = setInterval(function () {
 	if(!localStorage['item'])	
-	{localStorage['item'] = 5;}
+	{localStorage['item'] = 10;}
 	timer = localStorage['item'];
 	console.log(timer);
     timer--;
