@@ -88,7 +88,7 @@ function save_body(zone_id,zone_to){
         success: function (response) {
 		    if(!zone_to)
 			{
-				zone_to = "";
+				zone_to = "zone"+zone_id+"_only";
 			}	
             var loc = window.location;
 				 
