@@ -95,13 +95,15 @@ if(!zone_id)
 			id: zone_id
 		} ,
         success: function (response) {
-           if(zone_to)
+			if(!zone_to)
 			{
-				
-				 var loc = window.location;
-				 
-				 window.location.href = "/"+zone_to+"/";
+				zone_to = "zone"+zone_id;
 			}
+
+		    var loc = window.location;
+				 
+		    window.location.href = "/"+zone_to+"/";
+			
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);
@@ -142,41 +144,27 @@ function redirect_to(zoneto){
 	  save_body(zone,zoneto);
 } 			
 
-if (localStorage['item'] != 'NaN') {
-	   timerW();
-}
+//localStorage.clear();
 
-function hancur(id){
-	$('#'+id).slideUp( "slow", function() {
-      $('#'+id).remove();
-	});
-}
+//localStorage.removeItem('item');
 
-function hancur2(id){
-	$('#'+id).slideUp( "slow", function() {
-      $('#'+id).hide();
-	});
-	localStorage.clear();
-	localStorage['item'] = 10;
-	timerW();
+localStorage['item'] = 10;
 
-};
-
-localStorage.clear();
+timerW();
 
 function timerW()
 {
 	var interval = setInterval(function () {
-	if(!localStorage['item'])	
-	{localStorage['item'] = 10;}
 	timer = localStorage['item'];
 	console.log(timer);
     timer--;
     localStorage['item'] = timer;
     if (localStorage['item'] == 0) {
-		localStorage.clear();
+		localStorage['position'] = $(window).scrollTop();
+	//	localStorage.clear();
+	///	localStorage.removeItem('item');
 		clearInterval(interval);
-		window.location.href = "";
+		save_body(zone);
     }
 }, 1000);
 }

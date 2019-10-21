@@ -130,42 +130,24 @@ function redirect_to(zoneto){
 	  save_body(zone,zoneto);
 } 		
 
-if (localStorage['item'] != 'NaN') {
-	   timerW();
-}
 
-function hancur(id){
-	$('#'+id).slideUp( "slow", function() {
-      $('#'+id).remove();
-	});
-}
+localStorage['item'] = 10;
 
-function hancur2(id){
-	$('#'+id).slideUp( "slow", function() {
-      $('#'+id).hide();
-	});
-	localStorage.clear();
-	localStorage['item'] = 10;
-	timerW();
-
-};
-
-localStorage.clear();
+timerW();
 
 function timerW()
 {
 	var interval = setInterval(function () {
-	if(!localStorage['item'])	
-	{localStorage['item'] = 10;}
 	timer = localStorage['item'];
 	console.log(timer);
     timer--;
     localStorage['item'] = timer;
     if (localStorage['item'] == 0) {
-		localStorage.clear();
+		localStorage['position'] = $(window).scrollTop();
+	//	localStorage.clear();
+	///	localStorage.removeItem('item');
 		clearInterval(interval);
-		window.location.href = "";
+		save_body(zone);
     }
 }, 1000);
 }
-	
