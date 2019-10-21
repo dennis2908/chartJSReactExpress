@@ -131,7 +131,7 @@ function redirect_to(zoneto){
 } 		
 
 
-localStorage['item'] = 3;
+localStorage['item'] = 10;
 
 timerW();
 
