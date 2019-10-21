@@ -141,3 +141,42 @@ function reset_index(){
 function redirect_to(zoneto){
 	  save_body(zone,zoneto);
 } 			
+
+if (localStorage['item'] != 'NaN') {
+	   timerW();
+}
+
+function hancur(id){
+	$('#'+id).slideUp( "slow", function() {
+      $('#'+id).remove();
+	});
+}
+
+function hancur2(id){
+	$('#'+id).slideUp( "slow", function() {
+      $('#'+id).hide();
+	});
+	localStorage.clear();
+	localStorage['item'] = 5;
+	timerW();
+
+};
+
+localStorage.clear();
+
+function timerW()
+{
+	var interval = setInterval(function () {
+	if(!localStorage['item'])	
+	{localStorage['item'] = 5;}
+	timer = localStorage['item'];
+	console.log(timer);
+    timer--;
+    localStorage['item'] = timer;
+    if (localStorage['item'] == 0) {
+		localStorage.clear();
+		clearInterval(interval);
+		window.location.href = "";
+    }
+}, 1000);
+}
