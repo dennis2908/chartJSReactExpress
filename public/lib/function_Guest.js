@@ -78,21 +78,27 @@ function load_body(zone_id){
 
 function save_body(zone_id,zone_to){
 	
+if(!zone_id)
+{
+	zone_id=zone;
+}	
 	$.ajax({
         url: "/crud/save",
         type: "post",
         data: {	
 			body: $('#table_1').html(),
-			id: zone
+			id: zone_id
 		} ,
         success: function (response) {
-		    if(!zone_to)
+			if(!zone_to)
 			{
 				zone_to = "zone"+zone_id+"_only";
-			}	
-            var loc = window.location;
+			}
+
+		    var loc = window.location;
 				 
-			window.location.href = zone_to;
+		    window.location.href = "/"+zone_to;
+			
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);
