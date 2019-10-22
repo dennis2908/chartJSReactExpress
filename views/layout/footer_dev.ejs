@@ -130,10 +130,16 @@ function add_new_div(id="",table_type=""){
 	var table_type = $('#table_type').val();
 	}
 
-	$('#new_table').append('<div id="t'+id+'" class="green"><img class="'+table_type+'" src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id+'</div>');
+	$('#new_table').append('<div id="t'+id+'" onclick="" class="green"><img class="'+table_type+'" src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id+'</div>');
 	$("#t"+id).draggable();
-    $('#t'+id).click(function() {
-            if($("#t"+id).attr('class')=="green")
+	$('#t'+id).attr('onclick','change_new_table_col('+id+','+JSON.stringify(table_type)+')');
+
+
+}
+
+
+function change_new_table_col(id=0,table_type=""){
+  if($("#t"+id).attr('class')=="green")
 			{
 
 			   $("#t"+id).attr('class','red');
@@ -153,8 +159,6 @@ function add_new_div(id="",table_type=""){
 			   $("#t"+id).attr('class','green');
 			   $("#t"+id).html('<img src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id);
 			}
-
-	});
 
 
 }
@@ -204,10 +208,21 @@ function merge_div(){
 	}
 	var id_div = arr.join('_');
 
-	$('#table_merge').append('<div class="green" id="t'+id_div+'_merge">'+div+'</div>');
+	$('#table_merge').append('<div class="green" id="t'+id_div+'_merge" onclick="">'+div+'</div>');	
 	
-	$('#t'+id_div+'_merge').click(function() {
-	  	   if($('#t'+id_div+'_merge').attr('class')=="green")
+	$('#t'+id_div+'_merge').attr('onclick',"change_color_dm(["+arr+"],"+JSON.stringify(arr_table_type)+")");
+
+	$('#t'+id_div+'_merge').draggable();
+
+}
+
+function change_color_dm(arr=[],arr_table_type=[]){
+
+console.log(arr);
+
+
+   var id_div = arr.join('_');
+    if($('#t'+id_div+'_merge').attr('class')=="green")
 		   {
 		      var div = "";
 		      $('#t'+id_div+'_merge').attr('class','blue');
@@ -237,13 +252,7 @@ function merge_div(){
 			  }
 			  $('#t'+id_div+'_merge').html(div);
 		   }
-	})
-
-
-	$('#t'+id_div+'_merge').draggable();
-
-
-
+   
 }
 
 function div_click(id){
