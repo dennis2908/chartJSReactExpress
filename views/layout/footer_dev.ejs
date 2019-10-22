@@ -135,6 +135,8 @@ function add_new_div(id="",table_type=""){
 	$('#new_table').append('<div id="t'+id+'" onclick="" class="green"><img class="'+table_type+'" src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id+'</div>');
 	$("#t"+id).draggable();
 	$('#t'+id).attr('onclick','change_new_table_col('+id+','+JSON.stringify(table_type)+')');
+	
+	timerS(5);
 
 
 }
@@ -187,6 +189,8 @@ function split_div(){
     });
 
 	$('#t'+id_div+'_merge').remove();
+	
+	timerS(5);
 }
 
 
@@ -217,6 +221,8 @@ function merge_div(){
 	$('#t'+id_div+'_merge').attr('onclick',"change_color_dm(["+arr+"],"+JSON.stringify(arr_table_type)+")");
 
 	$('#t'+id_div+'_merge').draggable();
+	
+	timerS(5);
 
 }
 

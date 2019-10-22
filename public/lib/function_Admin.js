@@ -70,9 +70,9 @@ function load_body(zone_id){
 						else{
 						  
 						   $(this).attr('class','border_green rectangle ui-draggable');
-						   
-						    timerS(5);	
 						}		
+						
+						timerS(5);
 						
 					});
 					$(this).draggable();

@@ -10,7 +10,9 @@ exports.get_by_id = function(req, res){
    req.getConnection(function(err, connection){
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
-	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = ?", [data, id], function(err, row){
+	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
+		
+	//	console.log(req.query.author);
 			  
 	});
 	
@@ -33,7 +35,7 @@ exports.save = function(req, res){
 	
 	var id = JSON.parse(JSON.stringify(req.body.id));
   
-  console.log(id);
+  //console.log(id);
    req.getConnection(function(err, connection){
 	  
 	  var query = connection.query("select * from zone WHERE zone_id = "+id+" and admin_sync = 0 and guest_sync = 0", function(err, rows){

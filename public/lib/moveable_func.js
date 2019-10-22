@@ -18,13 +18,7 @@
 				if(arrx.includes(i))
 				{
 					$(this).draggable();
-					$(this).mousedown(function() {
-						timerS(5);
-					}).mousemove(function() {
-						timerS(5);
-					}).mouseup(function() {
-						timerS(5);
-					}).mouseover(function(){
+					$(this).mouseover(function(){
 						timerS(5);
 					});
 				}
@@ -55,7 +49,11 @@
 						else{
 						  
 						   $(this).attr('class','border_green rectangle ui-draggable');
-						}		
+						}	
+						
+						timerS(5);
+
+						
 						
 						
 					});
