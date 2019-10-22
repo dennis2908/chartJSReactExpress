@@ -139,13 +139,6 @@ function change_new_table_col(id=0,table_type=""){
 
 
 			}
-			else if($("#t"+id).attr('class')=="red")
-			{
-
-			   $("#t"+id).attr('class','blue');
-			   $("#t"+id).html('<img src="/images/'+table_type+'_blue.jpg" width="78" height="68" alt="">'+id);
-
-			}
 			else{
 
 			   $("#t"+id).attr('class','green');
@@ -155,24 +148,35 @@ function change_new_table_col(id=0,table_type=""){
 
 }
 
-function add_new_div(id="",table_type=""){
+function change_color_dm(arr=[],arr_table_type=[]){
 
-	if(!id)
-	{
-	   var id = $('#form_add #table_no').val();
-	}
-	if(!table_type)
-	{
-	var table_type = $('#table_type').val();
-	}
-
-	$('#new_table').append('<div id="t'+id+'" onclick="" class="green"><img class="'+table_type+'" src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id+'</div>');
-	$("#t"+id).draggable();
-	$('#t'+id).attr('onclick','change_new_table_col('+id+','+JSON.stringify(table_type)+')');
+console.log(arr);
 
 
+   var id_div = arr.join('_');
+    if($('#t'+id_div+'_merge').attr('class')=="green")
+		   {
+		      var div = "";
+		      $('#t'+id_div+'_merge').attr('class','red');
+		      for(i=0;i<arr.length;i++)
+			  {
+				div +='<div style="float:left;"><img class="'+arr_table_type[i]+'" src="/images/'+arr_table_type[i]+'_red.jpg" width="78" height="68" alt="">'+arr[i]+'</div>';
+			  }
+			  $('#t'+id_div+'_merge').html(div);
+		   }
+		   else
+		   {
+		      var div = "";
+		      $('#t'+id_div+'_merge').attr('class','green');
+		      for(i=0;i<arr.length;i++)
+			  {
+				div +='<div style="float:left;"><img class="'+arr_table_type[i]+'" src="/images/'+arr_table_type[i]+'_green.jpg" width="78" height="68" alt="">'+arr[i]+'</div>';
+			  }
+			  $('#t'+id_div+'_merge').html(div);
+		   }
+   
 }
-
+/*
 localStorage['item'] = 10;
 
 timerW();
@@ -193,3 +197,5 @@ function timerW()
     }
 }, 1000);
 }
+
+*/
