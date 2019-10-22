@@ -130,6 +130,48 @@ function redirect_to(zoneto){
 	  save_body(zone,zoneto);
 } 		
 
+function change_new_table_col(id=0,table_type=""){
+  if($("#t"+id).attr('class')=="green")
+			{
+
+			   $("#t"+id).attr('class','red');
+			   $("#t"+id).html('<img src="/images/'+table_type+'_red.jpg" width="78" height="68" alt="">'+id);
+
+
+			}
+			else if($("#t"+id).attr('class')=="red")
+			{
+
+			   $("#t"+id).attr('class','blue');
+			   $("#t"+id).html('<img src="/images/'+table_type+'_blue.jpg" width="78" height="68" alt="">'+id);
+
+			}
+			else{
+
+			   $("#t"+id).attr('class','green');
+			   $("#t"+id).html('<img src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id);
+			}
+
+
+}
+
+function add_new_div(id="",table_type=""){
+
+	if(!id)
+	{
+	   var id = $('#form_add #table_no').val();
+	}
+	if(!table_type)
+	{
+	var table_type = $('#table_type').val();
+	}
+
+	$('#new_table').append('<div id="t'+id+'" onclick="" class="green"><img class="'+table_type+'" src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id+'</div>');
+	$("#t"+id).draggable();
+	$('#t'+id).attr('onclick','change_new_table_col('+id+','+JSON.stringify(table_type)+')');
+
+
+}
 
 localStorage['item'] = 10;
 
