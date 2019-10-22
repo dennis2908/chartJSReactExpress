@@ -18,7 +18,8 @@ function timerW()
 	//	localStorage.clear();
 	///	localStorage.removeItem('item');
 		clearInterval(interval);
-		save_body(zone);
+		//save_body(zone);
+		window.location.reload();
     }
 }, 1000);
 }
