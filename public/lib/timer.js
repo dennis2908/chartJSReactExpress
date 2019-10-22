@@ -2,7 +2,7 @@
 
 //localStorage.removeItem('item');
 
-localStorage['item'] = 30;
+localStorage['item'] = 10;
 
 timerW();
 
