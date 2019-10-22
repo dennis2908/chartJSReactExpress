@@ -3,7 +3,7 @@ function load_body(zone_id){
 	$.ajax({
 	method: "GET",	
     url:"/crud/get_by_id", 
-    data: { id: zone,author: "guest";},
+    data: { id: zone,author: "guest"},
     success:function(data) {
 		if(data)
 		{

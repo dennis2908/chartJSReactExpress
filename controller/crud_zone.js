@@ -49,7 +49,7 @@ exports.save = function(req, res){
 	  //return console.log(rows);
 	  if(rows){
 		  if(rows.length == 1)
-			  connection.query("UPDATE zone set ? WHERE zone_id = ? and admin_sync = 1 and guest_sync = 1", [data, id], function(err, row){
+			  connection.query("UPDATE zone set ? WHERE zone_id = ? and admin_sync = 0 and guest_sync = 0", [data, id], function(err, row){
 			  if(err)
 				 res.send(['Zone is not synchronized']);
 			  else

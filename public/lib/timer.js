@@ -5,10 +5,8 @@ timerW();
 function timerW()
 {
 	var interval_to_save = setInterval(function () {
-	var timer = localStorage['item'];
-	console.log(timer);
-    timer--;
-    localStorage['item'] = timer;
+    localStorage['item']--;
+    console.log(localStorage['item']);
     if (localStorage['item'] == 0) {
 		localStorage['position'] = $(window).scrollTop();
 	//	localStorage.clear();
@@ -19,16 +17,13 @@ function timerW()
 }, 1000);
 }
 
-function timerS(timer)
+function timerS(timer_to)
 {
-	localStorage['count_to_save'] = timer;
+	localStorage['count_to_save'] = timer_to;
 	var interval_to_reload = setInterval(function () {
-	count_to_save = localStorage['count_to_save'];
-	console.log(count_to_save);
-    count_to_save--;
-    localStorage['count_to_save'] = count_to_save;
+	console.log(localStorage['count_to_save']);
+    localStorage['count_to_save']--;
     if (localStorage['count_to_save'] == 0) {
-		localStorage['count_to_save'] = $(window).scrollTop();
 	//	localStorage.clear();
 	///	localStorage.removeItem('item');
 	    save_body();
