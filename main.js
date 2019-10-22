@@ -127,6 +127,18 @@ app.post('/loginto',(req, res) => {
 		req.session.loggedin = token;
 		res.redirect('/');
 	}
+	/*
+	else if(username=="guest" && password=="guest")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Guest";
+		req.session.menu = '_';
+		req.session.author = "Guest";
+		req.session.loggedin = token;
+		res.redirect('/');
+	}
+	*/
 	else if(username=="zone1" && password=="11111")
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
