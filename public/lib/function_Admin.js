@@ -70,6 +70,8 @@ function load_body(zone_id){
 						else{
 						  
 						   $(this).attr('class','border_green rectangle ui-draggable');
+						   
+						    timerS(5);	
 						}		
 						
 					});
@@ -131,14 +133,10 @@ function change_image(zone,arr=[]){
 							document.getElementById(arr[i]).className  = "green";
 					}
 
-				  }     
-}
+				  }    
 
-function reset_index(){					
-		 $("img").css('z-index','1');
-		 $("div").css('z-index','1');
-		 alert('Z index Reset');
-}	
+    timerS(5);				  
+}
 
 function redirect_to(zoneto){
 	  save_body(zone,zoneto);

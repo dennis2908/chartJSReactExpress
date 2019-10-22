@@ -10,6 +10,10 @@ const bodyParser = require('body-parser');
 //use mysql database
 const app = express();
 
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
 global.Promise = require('bluebird');
 
 const jwt = require('jsonwebtoken');
@@ -224,6 +228,7 @@ function isAuthenticated(req, res, next) {
 		app.locals.devauth = req.session.devauth;
 		app.locals.name = req.session.name;
 		app.locals.menu = req.session.menu;
+
 		next();
 	} 
 	else {

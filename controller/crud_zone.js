@@ -9,6 +9,11 @@ exports.get_by_id = function(req, res){
   var id = req.query.id;
    req.getConnection(function(err, connection){
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
+	
+	connection.query("UPDATE zone set sync = 1 WHERE zone_id = ?", [data, id], function(err, row){
+			  
+	});
+	
 	if(rows){
 		if(rows.length > 0)
 		{
@@ -31,7 +36,7 @@ exports.save = function(req, res){
   console.log(id);
    req.getConnection(function(err, connection){
 	  
-	  var query = connection.query("select * from zone WHERE zone_id = "+id, function(err, rows){
+	  var query = connection.query("select * from zone WHERE zone_id = "+id+" and sync = 1", function(err, rows){
 		  
 		var data = {
 		  zone_id : JSON.parse(JSON.stringify(req.body.id)),	
@@ -42,7 +47,7 @@ exports.save = function(req, res){
 		  if(rows.length == 1)
 			  connection.query("UPDATE zone set ? WHERE zone_id = ?", [data, id], function(err, row){
 			  if(err)
-				console.log("Error in Updating : %s", err);
+				 res.send(['Zone is not synchronized']);
 			  else
 				 res.send("");  
 			  
@@ -51,11 +56,16 @@ exports.save = function(req, res){
 			req.getConnection(function(err, connection){
 			var query = connection.query("INSERT INTO zone set ?", data, function(err, rows, fields){
 				if(err)
-				  console.log("Error in Saving : %s", err);
+				  res.send(['Zone is not synchronized']);
 				else
 				  res.send("");      
 			});
 		  });
 	  }
+	  else
+	  {
+		  res.send(['Zone is not synchronized']);
+	  }
+	  
 	})})
 };

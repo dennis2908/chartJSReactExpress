@@ -12,21 +12,29 @@
 					}
 				}
 				
+				
 				var i = $(this).attr('class');
 				
 				if(arrx.includes(i))
 				{
 					$(this).draggable();
-					$( this ).css('z-index','1');
-				
-					$(this).mouseover(function(){
-						$( this ).css('z-index','11');
+					$(this).mousedown(function() {
+						timerS(5);
+					}).mousemove(function() {
+						timerS(5);
+					}).mouseup(function() {
+						timerS(5);
+					}).mouseover(function(){
+						timerS(5);
 					});
 				}
 				
 				if(arrz.includes(i))
 				{
 					$(this).draggable();
+					$(this).mouseover(function(){
+						timerS(5);
+					});
 				}
 				
 				if(arry.includes(i))
@@ -49,8 +57,15 @@
 						   $(this).attr('class','border_green rectangle ui-draggable');
 						}		
 						
+						
 					});
+					
 					$(this).draggable();
+					
+					$(this).mouseover(function(){
+						timerS(5);
+					});
+					
 				}
 			
 	})

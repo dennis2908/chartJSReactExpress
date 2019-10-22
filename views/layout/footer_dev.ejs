@@ -109,6 +109,8 @@ function change_color(id="")
 	{
 		document.getElementById(id).className  = "border_red";
 	}
+	
+	timerS(5);
 
 
 }
@@ -159,6 +161,8 @@ function change_new_table_col(id=0,table_type=""){
 			   $("#t"+id).attr('class','green');
 			   $("#t"+id).html('<img src="/images/'+table_type+'_green.jpg" width="78" height="68" alt="">'+id);
 			}
+			
+			timerS(5);
 
 
 }
@@ -218,9 +222,6 @@ function merge_div(){
 
 function change_color_dm(arr=[],arr_table_type=[]){
 
-console.log(arr);
-
-
    var id_div = arr.join('_');
     if($('#t'+id_div+'_merge').attr('class')=="green")
 		   {
@@ -251,8 +252,10 @@ console.log(arr);
 				div +='<div style="float:left;"><img class="'+arr_table_type[i]+'" src="/images/'+arr_table_type[i]+'_green.jpg" width="78" height="68" alt="">'+arr[i]+'</div>';
 			  }
 			  $('#t'+id_div+'_merge').html(div);
-		   }
-   
+		   }	   
+		   
+		   timerS(5);
+
 }
 
 function div_click(id){
@@ -271,6 +274,8 @@ function div_click(id){
 	else{
 	   $("#t"+id).attr('class','border_green rectangle');
 	}
+	
+	timerS(5);	
 
 }
 </script>
