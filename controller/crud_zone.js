@@ -10,7 +10,7 @@ exports.get_by_id = function(req, res){
    req.getConnection(function(err, connection){
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
-	connection.query("UPDATE zone set sync = 1 WHERE zone_id = ?", [data, id], function(err, row){
+	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = ?", [data, id], function(err, row){
 			  
 	});
 	
@@ -36,11 +36,13 @@ exports.save = function(req, res){
   console.log(id);
    req.getConnection(function(err, connection){
 	  
-	  var query = connection.query("select * from zone WHERE zone_id = "+id+" and sync = 1", function(err, rows){
+	  var query = connection.query("select * from zone WHERE zone_id = "+id+" and admin_sync = 0 and guest_sync = 0", function(err, rows){
 		  
 		var data = {
 		  zone_id : JSON.parse(JSON.stringify(req.body.id)),	
-		  body: JSON.parse(JSON.stringify(req.body.body))
+		  body: JSON.parse(JSON.stringify(req.body.body)),
+		  guest_sync : 1,
+		  admin_sync : 1
 		};	  
 	  //return console.log(rows);
 	  if(rows){
