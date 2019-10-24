@@ -19,6 +19,7 @@ function timerW()
 
 function timerS(timer_to)
 {
+	/*
 	localStorage['count_to_save'] = timer_to;
 	var interval_to_reload = setInterval(function () {
 	console.log(localStorage['count_to_save']);
@@ -31,4 +32,6 @@ function timerS(timer_to)
 
     }
 }, 1000);
+
+*/
 }

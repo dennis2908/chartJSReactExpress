@@ -61,13 +61,14 @@ app.set('views',path.join(__dirname,'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '990mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '990mb', extended: true}))
 //set folder public sebagai static folder untuk static file
 app.use('/assets',express.static(__dirname + '/public'));
  
 //route untuk homepage
 
+var allzone = require('./routes/allzone'); 
 var zone1 = require('./routes/zone1'); 
 var zone2 = require('./routes/zone2'); 
 var zone3 = require('./routes/zone3'); 
@@ -85,9 +86,10 @@ var zone7_only = require('./routes/zone7');
 var crud = require('./routes/crud'); 
 
 app.get('/',isAuthenticated,(req, res) => {
-  res.render('Zone1/index.ejs');
+  res.render('AllZone/index.ejs');
 });
 
+app.use('/allzone', isAuthenticated, allzone);
 app.use('/zone1', isAuthenticated, zone1);
 app.use('/zone1_only', isAuthenticatedZone1, zone1_only);
 app.use('/zone2_only', isAuthenticatedZone2, zone2_only);
