@@ -2,7 +2,7 @@ function load_body(zone_id){
 	  
 	$.ajax({
 	method: "GET",	
-    url:"/crud/get_by_id", 
+    url:"/crud/get_by_id_Admin", 
     data: { id: zone_id,author: "admin"},
     success:function(data) {
 		if(data)
@@ -90,7 +90,7 @@ if(!zone_id)
 	zone_id=zone;
 }	
 	$.ajax({
-        url: "/crud/save",
+        url: "/crud/save_by_admin",
         type: "post",
         data: {	
 			body: $('#table_1').html(),

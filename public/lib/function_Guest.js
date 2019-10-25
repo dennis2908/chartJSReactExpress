@@ -2,7 +2,7 @@ function load_body(zone_id){
 	  
 	$.ajax({
 	method: "GET",	
-    url:"/crud/get_by_id", 
+    url:"/crud/get_by_id_Guest", 
     data: { id: zone,author: "guest"},
     success:function(data) {
 		if(data)

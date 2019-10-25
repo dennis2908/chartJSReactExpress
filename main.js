@@ -69,6 +69,13 @@ app.use('/assets',express.static(__dirname + '/public'));
 //route untuk homepage
 
 var allzone = require('./routes/allzone'); 
+var zone1 = require('./routes/zone1'); 
+var zone2 = require('./routes/zone2'); 
+var zone3 = require('./routes/zone3'); 
+var zone4 = require('./routes/zone4'); 
+var zone5 = require('./routes/zone5'); 
+var zone6 = require('./routes/zone6'); 
+var zone7 = require('./routes/zone7'); 
 var zone1_only = require('./routes/zone1');
 var zone2_only = require('./routes/zone2');
 var zone3_only = require('./routes/zone3');
@@ -79,10 +86,17 @@ var zone7_only = require('./routes/zone7');
 var crud = require('./routes/crud'); 
 
 app.get('/',isAuthenticated,(req, res) => {
-  res.render('AllZone/index.ejs');
+  res.render('Zone1/index.ejs');
 });
 
-app.use('/allzone', isAuthenticated, allzone);
+app.use('/allzone', isAuthenticatedAllZone, allzone);
+app.use('/zone1', isAuthenticated, zone1);
+app.use('/zone2', isAuthenticated, zone2);
+app.use('/zone3', isAuthenticated, zone3);
+app.use('/zone4', isAuthenticated, zone4);
+app.use('/zone5', isAuthenticated, zone5);
+app.use('/zone6', isAuthenticated, zone6);
+app.use('/zone7', isAuthenticated, zone7);
 app.use('/zone1_only', isAuthenticatedZone1, zone1_only);
 app.use('/zone2_only', isAuthenticatedZone2, zone2_only);
 app.use('/zone3_only', isAuthenticatedZone3, zone3_only);
@@ -108,16 +122,27 @@ app.post('/loginto',(req, res) => {
 	var password = req.body.password;
 	req.session.admin = 0;
 	
-	if(username=="etherus" && password=="12345")
+	if(username=="console" && password=="myconsole")
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 	    req.session.name = "Console";
+		req.session.author = "Console";
+		req.session.Adminauthor = 'Console';
+		req.session.allzone = token;
+		res.redirect('/allzone');
+	}
+	
+	else if(username=="etherus" && password=="12345")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+	    req.session.name = "Admin";
 		req.session.author = "Admin";
 		req.session.Adminauthor = 'Admin';
 		req.session.menu = '_';
 		req.session.loggedin = token;
-		res.redirect('/');
+		res.redirect('/zone1');
 	}
 	/*
 	else if(username=="guest" && password=="guest")
@@ -168,7 +193,6 @@ app.post('/loginto',(req, res) => {
 		req.session.name = "Private";
 		req.session.menu = '';
 		req.session.author = "Guest";
-		req.session.save_loc = "/crud_each/save";
 		req.session.zone4 = token;
 		res.redirect('/zone4_only');
 	}
@@ -211,6 +235,21 @@ app.post('/loginto',(req, res) => {
   
 function isAuthenticated(req, res, next) {
 	if (req.session.loggedin) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.name = req.session.name;
+		app.locals.menu = req.session.menu;
+
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedAllZone(req, res, next) {
+	if (req.session.allzone) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
