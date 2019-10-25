@@ -69,6 +69,13 @@ app.use('/assets',express.static(__dirname + '/public'));
 //route untuk homepage
 
 var allzone = require('./routes/allzone'); 
+var zone1 = require('./routes/zone1'); 
+var zone2 = require('./routes/zone2'); 
+var zone3 = require('./routes/zone3'); 
+var zone4 = require('./routes/zone4'); 
+var zone5 = require('./routes/zone5'); 
+var zone6 = require('./routes/zone6'); 
+var zone7 = require('./routes/zone7'); 
 var zone1_only = require('./routes/zone1');
 var zone2_only = require('./routes/zone2');
 var zone3_only = require('./routes/zone3');
@@ -83,6 +90,7 @@ app.get('/',isAuthenticated,(req, res) => {
 });
 
 app.use('/allzone', isAuthenticated, allzone);
+app.use('/zone1', isAuthenticated, zone1);
 app.use('/zone1_only', isAuthenticatedZone1, zone1_only);
 app.use('/zone2_only', isAuthenticatedZone2, zone2_only);
 app.use('/zone3_only', isAuthenticatedZone3, zone3_only);
@@ -90,6 +98,12 @@ app.use('/zone4_only', isAuthenticatedZone4, zone4_only);
 app.use('/zone5_only', isAuthenticatedZone5, zone5_only);
 app.use('/zone6_only', isAuthenticatedZone6, zone6_only);
 app.use('/zone7_only', isAuthenticatedZone7, zone7_only);
+app.use('/zone2', isAuthenticated, zone2);
+app.use('/zone3', isAuthenticated, zone3);
+app.use('/zone4', isAuthenticated, zone4);
+app.use('/zone5', isAuthenticated, zone5);
+app.use('/zone6', isAuthenticated, zone6);
+app.use('/zone7', isAuthenticated, zone7);
 app.use('/crud', crud);
 
 app.get('/login',(req, res) => {

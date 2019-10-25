@@ -4,7 +4,9 @@ function load_body(){
 	method: "GET",	
     url:"/crud/get_by_id", 
     data: { author: "admin"},
-    success:function(data) {		
+    success:function(data) {
+		
+		console.log(data[0]);
 		if(data)
 		{
 			if(data[0].body !== '')
@@ -100,7 +102,7 @@ function load_body(){
 						   $(this).attr('class','border_green rectangle ui-draggable');
 						}		
 						
-						
+						timerS(5);
 						
 					});
 					$(this).draggable();
@@ -111,22 +113,22 @@ function load_body(){
 	});
 }
 
-function save_body(zone_id,zone_to){
+function save_body(){
 	
-if(!zone_id)
-{
-	zone_id=zone;
-}	
 	$.ajax({
         url: "/crud/save",
         type: "post",
         data: {	
-			body: $('#table_'+zone_id).html(),
-			id: zone_id
+			body1: $('#table_1').html(),
+			body2: $('#table_2').html(),
+			body3: $('#table_3').html(),
+			body4: $('#table_4').html(),
+			body5: $('#table_5').html(),
+			body6: $('#table_6').html(),
+			body7: $('#table_7').html(),
+			id:'all'
 		} ,
         success: function (response) {
-				 
-		    window.location.reload();
 			
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -156,5 +158,6 @@ function change_image(zone,arr=[]){
 					}
 
 				  }    
-				  
+
+    timerS(5);				  
 }		

@@ -19,7 +19,7 @@
 				{
 					$(this).draggable();
 					$(this).mouseover(function(){
-						timerS(5);
+						
 					});
 				}
 				
@@ -27,7 +27,7 @@
 				{
 					$(this).draggable();
 					$(this).mouseover(function(){
-						timerS(5);
+						
 					});
 				}
 				
@@ -51,7 +51,7 @@
 						   $(this).attr('class','border_green rectangle ui-draggable');
 						}	
 						
-						timerS(5);
+						
 
 						
 						
@@ -61,7 +61,7 @@
 					$(this).draggable();
 					
 					$(this).mouseover(function(){
-						timerS(5);
+						
 					});
 					
 				}

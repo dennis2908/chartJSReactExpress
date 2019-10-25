@@ -71,223 +71,22 @@ exports.get_by_id = function(req, res){
 exports.save = function(req, res){
 
 	
-	var id = JSON.parse(JSON.stringify(req.body.id));
-  						 
-							 
-   req.getConnection(function(err, connection){
-	   if(id=='all')  
-	   {  
-        	get_query("select * from zone WHERE zone_id = 1 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body1)+' where zone_id = 1', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 1", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (1,'+JSON.stringify(req.body.body1)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });	
-			 
-			
-			 get_query("select * from zone WHERE zone_id = 2 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body2)+' where zone_id = 2', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 2", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (2,'+JSON.stringify(req.body.body2)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });
-			 
-			 get_query("select * from zone WHERE zone_id = 3 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body3)+' where zone_id = 3', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 3", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (3,'+JSON.stringify(req.body.body3)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });
-			 
-			 var zone_id = 4;
-			 
-			 var body =  JSON.stringify(req.body.body4);
-			
-			 get_query("select * from zone WHERE zone_id = 4 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body4)+' where zone_id = 4', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 4", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (4,'+JSON.stringify(req.body.body4)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });
-			 
-			
-			 get_query("select * from zone WHERE zone_id = 5 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body5)+' where zone_id = 5', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 5", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (5,'+JSON.stringify(req.body.body5)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });
-			
-			 get_query("select * from zone WHERE zone_id = 6 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body6)+' where zone_id = 6', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 6", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (6,'+JSON.stringify(req.body.body6)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });
-			 
-			
-			 get_query("select * from zone WHERE zone_id = 7 and admin_sync = 0 and guest_sync = 0", function(result){
-				if(result){
-					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body7)+' where zone_id = 7', function(result){
-							console.log(result);	
-							
-					  });	
-					}
-					else
-					{
-					  get_query("select * from zone WHERE zone_id = 7", function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values (7,'+JSON.stringify(req.body.body7)+')', function(result){
-									console.log(result);			
-										
-								  });
-							}
-						}
-					   })
-	
-					}
-					
-				}
-			 });
-			 
-
-			res.send("");   
-			
-	   } 	   
-	   else{
-		   
-		    zone_id=id;
+			var zone_id = JSON.parse(JSON.stringify(req.body.id));
 			body = JSON.stringify(req.body.body);
-			get_query("select * from zone WHERE zone_id = "+zone_id+" and admin_sync = 0 and guest_sync = 0", function(result){
+			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id))+" and admin_sync = 0 and guest_sync = 0", function(result){
 				if(result){
 					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+body+' where zone_id='+zone_id, function(result){
+					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1,body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
 							console.log(result);	
 							
 					  });	
 					}
 					else
 					{
-					  get_query("select * from zone WHERE zone_id = "+zone_id, function(result){
+					  get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
                         if(result){
 							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values ('+zone_id+','+body+')', function(result){
+								  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
 									console.log(result);			
 										
 								  });
@@ -299,11 +98,10 @@ exports.save = function(req, res){
 					
 				}
 			 });
-	   }
+			 
+			 return res.send("");	 
+}
 	 
-	  
-	})
-};
 
 function get_query(sql,callback) {
 	
