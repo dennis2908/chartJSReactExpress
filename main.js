@@ -69,6 +69,7 @@ app.use('/assets',express.static(__dirname + '/public'));
 //route untuk homepage
 
 var allzone = require('./routes/allzone'); 
+var allzone_hostess = require('./routes/allzone_hostess'); 
 var zone1 = require('./routes/zone1'); 
 var zone2 = require('./routes/zone2'); 
 var zone3 = require('./routes/zone3'); 
@@ -90,6 +91,7 @@ app.get('/',isAuthenticated,(req, res) => {
 });
 
 app.use('/allzone', isAuthenticatedAllZone, allzone);
+app.use('/allzone_hostess', isAuthenticatedAllZoneHostess, allzone_hostess);
 app.use('/zone1', isAuthenticated, zone1);
 app.use('/zone2', isAuthenticated, zone2);
 app.use('/zone3', isAuthenticated, zone3);
@@ -131,6 +133,17 @@ app.post('/loginto',(req, res) => {
 		req.session.Adminauthor = 'Console';
 		req.session.allzone = token;
 		res.redirect('/allzone');
+	}
+	
+	if(username=="hostess" && password=="thehostess")
+	{
+		let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+	    req.session.name = "Console";
+		req.session.author = "Console";
+		req.session.Adminauthor = 'Console';
+		req.session.allzoneHostess = token;
+		res.redirect('/allzone_hostess');
 	}
 	
 	else if(username=="etherus" && password=="12345")
@@ -250,6 +263,21 @@ function isAuthenticated(req, res, next) {
 
 function isAuthenticatedAllZone(req, res, next) {
 	if (req.session.allzone) {
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.name = req.session.name;
+		app.locals.menu = req.session.menu;
+
+		next();
+	} 
+	else {
+		res.redirect('/login');
+	}
+}
+
+function isAuthenticatedAllZoneHostess(req, res, next) {
+	if (req.session.allzoneHostess) {
 		app.locals.author = req.session.author;
 		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
