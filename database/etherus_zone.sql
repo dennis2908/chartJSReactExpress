@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2019 at 01:19 PM
+-- Generation Time: Oct 29, 2019 at 04:34 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -33,7 +33,8 @@ CREATE TABLE `zone` (
   `zone_name` varchar(100) NOT NULL,
   `body` mediumtext NOT NULL,
   `admin_sync` int(11) NOT NULL DEFAULT '1',
-  `guest_sync` int(1) NOT NULL DEFAULT '1'
+  `guest_sync` int(1) NOT NULL DEFAULT '1',
+  `hostess_sync` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
