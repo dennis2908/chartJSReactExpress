@@ -72,7 +72,6 @@ function load_body(zone_id){
 						   $(this).attr('class','border_green rectangle ui-draggable');
 						}		
 						
-						timerS(5);
 						
 					});
 					$(this).draggable();
@@ -135,7 +134,6 @@ function change_image(zone,arr=[]){
 
 				  }    
 
-    timerS(5);				  
 }
 
 function redirect_to(zoneto){
