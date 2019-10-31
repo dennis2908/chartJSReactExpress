@@ -141,7 +141,7 @@ setTimeout(function(){
            console.log(textStatus, errorThrown);
         }
     });
-});	
+ }, 1000);
 	
 }
 
