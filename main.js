@@ -82,6 +82,12 @@ var zone6_only = require('./routes/zone6');
 var zone7_only = require('./routes/zone7');
 var crud = require('./routes/crud'); 
 
+process.on('unhandledRejection', (error, promise) => {
+  console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
+  console.log(' The error was: ', error );
+});
+
+
 app.get('/',isAuthenticated,(req, res) => {
   res.render('Zone1/index.ejs');
 });
@@ -383,4 +389,13 @@ function isAuthenticatedZone7(req, res, next) {
 //server listening
 app.listen(8082, () => {
   console.log('Server is running at port 8082');
+});
+
+app.on('uncaughtException', function (req, res, route, err) {
+  log.info('******* Begin Error *******\n%s\n*******\n%s\n******* End Error *******', route, err.stack);
+  if (!res.headersSent) {
+    return res.send(500, {ok: false});
+  }
+  res.write('\n');
+  res.end();
 });

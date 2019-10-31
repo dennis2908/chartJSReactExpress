@@ -7,9 +7,7 @@ function load_body(zone_id){
     success:function(data) {
 		if(data)
 		{
-			setTimeout(function(){  
-				$('#table_1').html(data);
-			}, 1000);
+			$('#table_1').html(data);
 		}
 			
 	  }
@@ -24,9 +22,7 @@ if(!zone_id)
 }	
 
 
-setTimeout(function(){
-
-    $.ajax({
+	$.ajax({
         url: "/crud/save",
         type: "post",
         data: {	
@@ -52,8 +48,6 @@ setTimeout(function(){
         }
     });
 	
- }, 1000);
-	
 }
 	
 load_body(zone);
@@ -61,22 +55,19 @@ load_body(zone);
 
 function change_image(zone,arr=[]){				
 
-	setTimeout(function(){   
-					  for (i = 0; i < arr.length; i++) {
-						if(document.getElementById(arr[i]).className  == "green")
-						{
-								document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_red.jpg"; 
-								document.getElementById(arr[i]).className  = "red";
-						}
-						else
-						{
-								document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_green.jpg"; 
-								document.getElementById(arr[i]).className  = "green";
-						}
-								var container = document.querySelector("#"+arr[i]);
-					  } 
-					  
-	 }, 600);				  
+for (i = 0; i < arr.length; i++) {
+  if(document.getElementById(arr[i]).className  == "green")
+  {
+	document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_red.jpg"; 
+	document.getElementById(arr[i]).className  = "red";
+  }
+  else
+  {
+	document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_green.jpg"; 
+	document.getElementById(arr[i]).className  = "green";
+  }
+  var container = document.querySelector("#"+arr[i]);
+} 
         
 }
 
@@ -103,10 +94,7 @@ function change_new_table_col(id=0,table_type=""){
 function change_color_dm(arr=[],arr_table_type=[]){
 	
 	
-	setTimeout(function(){
-	
-	
-	var id_div = arr.join('_');
+		   var id_div = arr.join('_');
 		   if($('#t'+id_div+'_merge').attr('class')=="green")
 		   {
 		      var div = "";
@@ -126,9 +114,7 @@ function change_color_dm(arr=[],arr_table_type=[]){
 				div +='<div style="float:left;"><img class="'+arr_table_type[i]+'" src="/images/'+arr_table_type[i]+'_green.jpg" width="78" height="68" alt="">'+arr[i]+'</div>';
 			  }
 			  $('#t'+id_div+'_merge').html(div);
-		   }   
-		   
-	}, 1000);
+		   } 
 		   
    
 }
