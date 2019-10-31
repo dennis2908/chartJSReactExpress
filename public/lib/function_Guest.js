@@ -60,22 +60,22 @@ load_body(zone);
 
 function change_image(zone,arr=[]){				
 
-setTimeout(function(){   
-		          for (i = 0; i < arr.length; i++) {
-					if(document.getElementById(arr[i]).className  == "green")
-					{
-							document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_red.jpg"; 
-							document.getElementById(arr[i]).className  = "red";
-					}
-					else
-					{
-							document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_green.jpg"; 
-							document.getElementById(arr[i]).className  = "green";
-					}
-							var container = document.querySelector("#"+arr[i]);
-				  } 
-				  
- }, 600);				  
+	setTimeout(function(){   
+					  for (i = 0; i < arr.length; i++) {
+						if(document.getElementById(arr[i]).className  == "green")
+						{
+								document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_red.jpg"; 
+								document.getElementById(arr[i]).className  = "red";
+						}
+						else
+						{
+								document.getElementById(arr[i]).src = "/"+zone+"/images/"+arr[i]+"_green.jpg"; 
+								document.getElementById(arr[i]).className  = "green";
+						}
+								var container = document.querySelector("#"+arr[i]);
+					  } 
+					  
+	 }, 600);				  
         
 }
 
@@ -101,13 +101,9 @@ function change_new_table_col(id=0,table_type=""){
 
 function change_color_dm(arr=[],arr_table_type=[]){
 	
-	var startTime = "";
-
-setTimeout(function(){
 	
-	if (!startTime) {
-        startTime = Date.now();
-    }
+	setTimeout(function(){
+	
 	
 	var id_div = arr.join('_');
     if($('#t'+id_div+'_merge').attr('class')=="green")
@@ -131,7 +127,7 @@ setTimeout(function(){
 			  $('#t'+id_div+'_merge').html(div);
 		   }   
 		   
- }, 1000);
+	}, 1000);
 		   
    
 }

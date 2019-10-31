@@ -147,7 +147,9 @@ setTimeout(function(){
 
 load_body();
 		 
-function change_image(zone,arr=[]){				   
+function change_image(zone,arr=[]){		
+
+setTimeout(function(){   		   
                   for (i = 0; i < arr.length; i++) {
 					if(document.getElementById(arr[i]).className  == "blue")
 					{
@@ -166,5 +168,6 @@ function change_image(zone,arr=[]){
 					}
 
 				  }    
+ }, 1000);
 				  
 }
