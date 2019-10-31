@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c24930b-9b18-403e-a7a9-6574fc65bedf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/views/AllZone/index.ejs" afterPath="$PROJECT_DIR$/views/AllZone/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/AllzoneHostess/index.ejs" afterPath="$PROJECT_DIR$/views/AllzoneHostess/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone1/index.ejs" afterPath="$PROJECT_DIR$/views/Zone1/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone2/index.ejs" afterPath="$PROJECT_DIR$/views/Zone2/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone3/index.ejs" afterPath="$PROJECT_DIR$/views/Zone3/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone4/index.ejs" afterPath="$PROJECT_DIR$/views/Zone4/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone5/index.ejs" afterPath="$PROJECT_DIR$/views/Zone5/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone6/index.ejs" afterPath="$PROJECT_DIR$/views/Zone6/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/Zone7/index.ejs" afterPath="$PROJECT_DIR$/views/Zone7/index.ejs" />
-      <change beforePath="$PROJECT_DIR$/views/layout/footer_menu_Admin.ejs" afterPath="$PROJECT_DIR$/views/layout/footer_menu_Admin.ejs" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/controller/crud_zone.js" afterPath="$PROJECT_DIR$/controller/crud_zone.js" />
+      <change beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
       <change beforePath="$PROJECT_DIR$/views/layout/footer_menu_Guest.ejs" afterPath="$PROJECT_DIR$/views/layout/footer_menu_Guest.ejs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,6 +16,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="crud_zone.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controller/crud_zone.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/Zone1/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,26 +86,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer_menu_AdminAllZone.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout/footer_menu_AdminAllZone.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer_menu_Admin.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout/footer_menu_Admin.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="11" column="39" lean-forward="false" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/Zone7/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
@@ -113,11 +96,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer_menu_Guest.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="footer_menu_Guest.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout/footer_menu_Guest.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="66" lean-forward="false" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="64" column="47" lean-forward="false" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -136,6 +129,7 @@
     <findStrings>
       <find>/Zone2/images/index_01.gif</find>
       <find>save_body</find>
+      <find>console.log</find>
     </findStrings>
     <replaceStrings>
       <replace>olspan=50&gt;&lt;a href=&quot;#&quot; onclick=&quot;save_body</replace>
@@ -151,7 +145,6 @@
         <option value="$PROJECT_DIR$/public/lib/timer.js" />
         <option value="$PROJECT_DIR$/public/lib/function_AdminAllZone.js" />
         <option value="$PROJECT_DIR$/public/lib/function_AdminAllZoneHostess.js" />
-        <option value="$PROJECT_DIR$/controller/crud_zone.js" />
         <option value="$PROJECT_DIR$/views/layout/footerAllZoneHostess.ejs" />
         <option value="$PROJECT_DIR$/views/AllZone/index.ejs" />
         <option value="$PROJECT_DIR$/views/AllzoneHostess/index.ejs" />
@@ -164,6 +157,8 @@
         <option value="$PROJECT_DIR$/views/Zone6/index.ejs" />
         <option value="$PROJECT_DIR$/views/Zone7/index.ejs" />
         <option value="$PROJECT_DIR$/views/layout/footer_menu_Guest.ejs" />
+        <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/controller/crud_zone.js" />
       </list>
     </option>
   </component>
@@ -222,6 +217,11 @@
               <item name="etherus" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Zone1" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="etherus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="etherus" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="etherus" type="b2602c69:ProjectViewProjectNode" />
@@ -341,12 +341,12 @@
       <workItem from="1572117280442" duration="1632000" />
       <workItem from="1572142824538" duration="583000" />
       <workItem from="1572180581116" duration="302000" />
-      <workItem from="1572424547145" duration="1160000" />
+      <workItem from="1572424547145" duration="3646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6119000" />
+    <option name="totallyTimeSpent" value="8605000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -384,14 +384,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/lib/function_Guest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/lib/function_Admin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -656,14 +648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/crud_zone.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2890">
-          <caret line="170" column="4" lean-forward="false" selection-start-line="170" selection-start-column="4" selection-end-line="170" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -782,8 +766,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/layout/footer_menu_Guest.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="10" column="66" lean-forward="false" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="64" column="47" lean-forward="false" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/crud_zone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
           <folding />
         </state>
       </provider>

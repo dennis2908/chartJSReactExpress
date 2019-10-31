@@ -25,7 +25,7 @@ exports.get_by_id = function(req, res){
 	   
     connection.query(sql_script, function(err, rows){
 		
-		console.log(err);
+		//console.log(err);
 
 		if(req.query.author=='guest')	{
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id;
@@ -120,7 +120,7 @@ exports.save = function(req, res){
 				if(result){
 					if(result.length == 1){
 					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, hostess_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
-							console.log(result);	
+							//console.log(result);
 							
 					  });	
 					}
@@ -130,7 +130,7 @@ exports.save = function(req, res){
                         if(result){
 							if(result.length == 0){ 						  
 								  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-									console.log(result);			
+									//console.log(result);
 										
 								  });
 							}
@@ -154,12 +154,15 @@ exports.save_by_admin = function(req, res){
 			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
 				if(result){
 					if(result.length == 1) {
-                        console.log(result);
-					}
+                        ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, hostess_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
+                            //console.log(result);
+
+                        });
+                    }
 					else
 					{
 					  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-							console.log(result);						
+							//console.log(result);
 					  });
 	
 					}
