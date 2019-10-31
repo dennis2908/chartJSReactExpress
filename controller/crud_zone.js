@@ -26,8 +26,6 @@ exports.get_by_id = function(req, res){
     connection.query(sql_script, function(err, rows){
 		
 		//console.log(err);
-		
-		
 
 		if(req.query.author=='guest')	{
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id;
@@ -36,24 +34,37 @@ exports.get_by_id = function(req, res){
 		{
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0";
 		}
-			
+		
 		setTimeout(function(){
-          connection.query(sql_update, function(err, row){
+        connection.query(sql_update, function(err, row){
 				
 			//	console.log(req.query.author);
 					  
 			});
 		}, 200);
 			
-		setTimeout(function(){
-          connection.query(sql_update, function(err, row){
-				
-			//	console.log(req.query.author);
-					  
-			});
-		}, 200);	
 			
-			});
+		setTimeout(function(){
+        if(rows){
+				if(rows.length > 0)
+				{
+				  if(id){
+					  return res.send(rows[0]['body']);	
+				  }
+				  else
+				  {
+					 return res.send(rows);	 
+				  } 	
+				  
+				}
+				else
+				{
+					return "";
+				}
+			}
+		}, 200);	
+				
+	});
   });
 };
 
@@ -75,22 +86,15 @@ exports.get_by_id_Guest = function(req, res){
 	
 	setTimeout(function(){
         if(rows){
-				if(rows.length > 0)
-				{
-				  if(id){
-					  return res.send(rows[0]['body']);	
-				  }
-				  else
-				  {
-					 return res.send(rows);	 
-				  } 	
-				  
-				}
-				else
-				{
-					return "";
-				}
-			}	
+			if(rows.length > 0)
+			{
+			  return res.send(rows[0]['body']);	
+			}
+			else
+			{
+				return "";
+			}
+	}	;
     }, 200);
 	
 	
@@ -121,49 +125,43 @@ exports.get_by_id_Admin = function(req, res){
 };
 
 exports.save = function(req, res){
-var async_queue = Array(100).fill(function(){
-	
-	
-	var zone_id = JSON.parse(JSON.stringify(req.body.id));
+var zone_id = JSON.parse(JSON.stringify(req.body.id));
 			body = JSON.stringify(req.body.body);
 			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id))+" and admin_sync = 0 and guest_sync = 0", function(result){
 				if(result){
 					if(result.length == 1){
-					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
+						setTimeout(function(){
+							ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
 				 			return res.send("");	 
 							
-					  });	
+							});	
+						}, 200);
+					  
 					}
 					else
 					{
-					  get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
-                        if(result){
-							if(result.length == 0){ 						  
-								  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-									 return res.send("");	 
-										
-								  });
+					   setTimeout(function(){
+							get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
+							if(result){
+								if(result.length == 0){ 						  
+									  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
+										 return res.send("");	 
+											
+									  });
+								}
+								else{
+									
+									return res.send("");	
+								}
 							}
-							else{
-								
-								return res.send("");	
-							}
-						}
-						
-					   })
+							
+						   })
+						}, 200);
 	
 					}
 					
 				}
-			 });
-});	
-
-
-async.parallelLimit(async_queue,3, function(){
-	
-	return res.send("");
-});			
-			 
+});
 			 
 }
 	
@@ -208,7 +206,7 @@ function get_query(sql,callback) {
    });
 			var query = connection.query(sql, function(error, results, fields) {
 
-				//return callback(results);
+				return callback(results);
 
 
 			});
@@ -229,7 +227,10 @@ function ins_sql(sql,callback) {
    });
 			var query = connection.query(sql,function(error, results, fields) {
 
-				//return callback(error);
+			setTimeout(function(){
+				return callback(error);
+			}, 200);
+				
 
 
 			});

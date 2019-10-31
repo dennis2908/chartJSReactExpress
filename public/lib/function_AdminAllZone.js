@@ -125,8 +125,14 @@ if(!zone_id)
 			id: zone_id
 		} ,
         success: function (response) {
-				 
-		    window.location.reload();
+		/*		
+			setTimeout(function(){
+				window.location.reload();
+			},
+			500);		
+
+			*/		
+
 			
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -158,3 +164,9 @@ function change_image(zone,arr=[]){
 				  }    
 				  
 }		
+
+
+function gotopage(){
+	
+	
+}
