@@ -26,6 +26,8 @@ exports.get_by_id = function(req, res){
     connection.query(sql_script, function(err, rows){
 		
 		//console.log(err);
+		
+		
 
 		if(req.query.author=='guest')	{
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id;
@@ -35,13 +37,44 @@ exports.get_by_id = function(req, res){
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0";
 		}
 			
-			connection.query(sql_update, function(err, row){
+		setTimeout(function(){
+          connection.query(sql_update, function(err, row){
 				
 			//	console.log(req.query.author);
 					  
 			});
+		}, 200);
 			
-			if(rows){
+		setTimeout(function(){
+          connection.query(sql_update, function(err, row){
+				
+			//	console.log(req.query.author);
+					  
+			});
+		}, 200);	
+			
+			});
+  });
+};
+
+
+exports.get_by_id_Guest = function(req, res){
+
+  var id = req.query.id;
+   req.getConnection(function(err, connection){
+    connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
+	
+	
+	setTimeout(function(){
+        connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
+		
+		//	console.log(req.query.author);
+				  
+		});
+    }, 200);
+	
+	setTimeout(function(){
+        if(rows){
 				if(rows.length > 0)
 				{
 				  if(id){
@@ -58,33 +91,9 @@ exports.get_by_id = function(req, res){
 					return "";
 				}
 			}	
-			});
-  });
-};
-
-
-exports.get_by_id_Guest = function(req, res){
-
-  var id = req.query.id;
-   req.getConnection(function(err, connection){
-    connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
+    }, 200);
 	
-	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
-		
-	//	console.log(req.query.author);
-			  
-	});
 	
-	if(rows){
-		if(rows.length > 0)
-		{
-		  return res.send(rows[0]['body']);	
-		}
-		else
-		{
-			return "";
-		}
-	}	
     });
   });
 };
@@ -136,7 +145,6 @@ var async_queue = Array(100).fill(function(){
 								  });
 							}
 							else{
-								//console.log(111);
 								
 								return res.send("");	
 							}
