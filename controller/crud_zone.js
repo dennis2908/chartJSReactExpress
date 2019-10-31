@@ -35,35 +35,29 @@ exports.get_by_id = function(req, res){
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0";
 		}
 			
-			
-			
-			setTimeout(function(){
-				connection.query(sql_update, function(err, row){
+			connection.query(sql_update, function(err, row){
 				
 			//	console.log(req.query.author);
 					  
-				});
-			}, 200);
+			});
 			
-			setTimeout(function(){
-				if(rows){
-					if(rows.length > 0)
-					{
-					  if(id){
-						  return res.send(rows[0]['body']);	
-					  }
-					  else
-					  {
-						 return res.send(rows);	 
-					  } 	
-					  
-					}
-					else
-					{
-						return "";
-					}
+			if(rows){
+				if(rows.length > 0)
+				{
+				  if(id){
+					  return res.send(rows[0]['body']);	
+				  }
+				  else
+				  {
+					 return res.send(rows);	 
+				  } 	
+				  
 				}
-			}, 200);
+				else
+				{
+					return "";
+				}
+			}	
 			});
   });
 };
@@ -75,29 +69,22 @@ exports.get_by_id_Guest = function(req, res){
    req.getConnection(function(err, connection){
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
-	
-	
-	setTimeout(function(){
-				connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
+	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
 		
 	//	console.log(req.query.author);
 			  
-			});
-	}, 200);
+	});
 	
-	setTimeout(function(){
-		if(rows){
-				if(rows.length > 0)
-				{
-				  return res.send(rows[0]['body']);	
-				}
-				else
-				{
-					return "";
-				}
-		};
-	}, 200);
-	
+	if(rows){
+		if(rows.length > 0)
+		{
+		  return res.send(rows[0]['body']);	
+		}
+		else
+		{
+			return "";
+		}
+	}	
     });
   });
 };
@@ -108,65 +95,68 @@ exports.get_by_id_Admin = function(req, res){
 
   var id = req.query.id;
    req.getConnection(function(err, connection){
-    connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){		
+    connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
-	setTimeout(function(){
-		if(rows){
-			if(rows.length > 0)
-			{
-			  return res.send(rows[0]['body']);	
-			}
-			else
-			{
-				return "";
-			}
+	if(rows){
+		if(rows.length > 0)
+		{
+		  return res.send(rows[0]['body']);	
 		}
-	}, 200);
+		else
+		{
+			return "";
+		}
+	}	
     });
   });
 };
 
 exports.save = function(req, res){
-
+var async_queue = Array(100).fill(function(){
 	
-			var zone_id = JSON.parse(JSON.stringify(req.body.id));
+	
+	var zone_id = JSON.parse(JSON.stringify(req.body.id));
 			body = JSON.stringify(req.body.body);
 			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id))+" and admin_sync = 0 and guest_sync = 0", function(result){
-				
-				setTimeout(function(){
-					if(result){
-						if(result.length == 1){
-						  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
-								setTimeout(function(){
-									return res.end(1); 
-								}, 200);
-								
-						  });	
-						}
-						else
-						{
-						  get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
-							  
-							  setTimeout(function(){
-								if(result){
-										if(result.length == 0){ 						  
-											  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-												 setTimeout(function(){
-												   return res.end(1); 
-												 }, 200);
-											  });
-										}
-								}
-							}, 200);
+				if(result){
+					if(result.length == 1){
+					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
+				 			return res.send("");	 
 							
-						   })
-		
-						}
+					  });	
 					}
-				}, 200);
-			 })
+					else
+					{
+					  get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
+                        if(result){
+							if(result.length == 0){ 						  
+								  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
+									 return res.send("");	 
+										
+								  });
+							}
+							else{
+								//console.log(111);
+								
+								return res.send("");	
+							}
+						}
+						
+					   })
+	
+					}
+					
+				}
+			 });
+});	
+
+
+async.parallelLimit(async_queue,3, function(){
+	
+	return res.send("");
+});			
 			 
-			  
+			 
 }
 	
 
@@ -176,30 +166,25 @@ exports.save_by_admin = function(req, res){
 			var zone_id = JSON.parse(JSON.stringify(req.body.id));
 			body = JSON.stringify(req.body.body);
 			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
-				
-				setTimeout(function(){
-					if(result){
-						if(result.length == 1) {
-							ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
-								 setTimeout(function(){
-									return res.end(1); 
-								}, 200);
+				if(result){
+					if(result.length == 1) {
+                        ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
+                            //console.log(result);
 
-							});
-						}
-						else
-						{
-						  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-								setTimeout(function(){
-									return res.end(1); 
-								}, 200);
-						  });
-		
-						}
-						
+                        });
+                    }
+					else
+					{
+					  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
+							//console.log(result);
+					  });
+	
 					}
-				}, 200);
+					
+				}
 			});
+			 
+	return res.send("");	 
 }	
 
 function get_query(sql,callback) {
@@ -215,10 +200,7 @@ function get_query(sql,callback) {
    });
 			var query = connection.query(sql, function(error, results, fields) {
 
-				setTimeout(function(){
-					return callback(results);
-				}, 200);
-
+				//return callback(results);
 
 
 			});
@@ -238,9 +220,8 @@ function ins_sql(sql,callback) {
 		database: 'etherus_zone'
    });
 			var query = connection.query(sql,function(error, results, fields) {
-				setTimeout(function(){
-					return callback(error);
-				}, 200);
+
+				//return callback(error);
 
 
 			});
