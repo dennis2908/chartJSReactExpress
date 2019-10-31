@@ -134,7 +134,8 @@ app.post('/loginto',(req, res) => {
 		res.redirect('/allzone');
 	}
 	
-	if(username=="hostess" && password=="thehostess")
+	/*
+	else if(username=="hostess" && password=="thehostess")
 	{
 		let privateKey = fs.readFileSync('./private.pem', 'utf8');
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
@@ -144,6 +145,7 @@ app.post('/loginto',(req, res) => {
 		req.session.allzoneHostess = token;
 		res.redirect('/allzone_hostess');
 	}
+	*/
 	
 	else if(username=="etherus" && password=="12345")
 	{
