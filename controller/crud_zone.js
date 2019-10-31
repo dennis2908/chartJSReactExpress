@@ -116,7 +116,7 @@ exports.save = function(req, res){
 	
 			var zone_id = JSON.parse(JSON.stringify(req.body.id));
 			body = JSON.stringify(req.body.body);
-			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id))+" and admin_sync = 0 and guest_sync = 0 and hostess_sync = 0", function(result){
+			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id))+" and admin_sync = 0 and guest_sync = 0", function(result){
 				if(result){
 					if(result.length == 1){
 					  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
