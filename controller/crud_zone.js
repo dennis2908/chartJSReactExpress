@@ -43,7 +43,7 @@ exports.get_by_id = function(req, res){
 			//	console.log(req.query.author);
 					  
 				});
-			}, 500);
+			}, 200);
 			
 			setTimeout(function(){
 				if(rows){
@@ -63,7 +63,7 @@ exports.get_by_id = function(req, res){
 						return "";
 					}
 				}
-			}, 500);
+			}, 200);
 			});
   });
 };
@@ -83,7 +83,7 @@ exports.get_by_id_Guest = function(req, res){
 	//	console.log(req.query.author);
 			  
 			});
-	}, 500);
+	}, 200);
 	
 	setTimeout(function(){
 		if(rows){
@@ -96,7 +96,7 @@ exports.get_by_id_Guest = function(req, res){
 					return "";
 				}
 		};
-	}, 500);
+	}, 200);
 	
     });
   });
@@ -121,7 +121,7 @@ exports.get_by_id_Admin = function(req, res){
 				return "";
 			}
 		}
-	}, 500);
+	}, 200);
     });
   });
 };
@@ -137,7 +137,9 @@ exports.save = function(req, res){
 					if(result){
 						if(result.length == 1){
 						  ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
-								//console.log(result);
+								setTimeout(function(){
+									return res.end(1); 
+								}, 200);
 								
 						  });	
 						}
@@ -149,18 +151,19 @@ exports.save = function(req, res){
 								if(result){
 										if(result.length == 0){ 						  
 											  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-												//console.log(result);
-													
+												 setTimeout(function(){
+												   return res.end(1); 
+												 }, 200);
 											  });
 										}
 								}
-							}, 500);
+							}, 200);
 							
 						   })
 		
 						}
 					}
-				}, 500);
+				}, 200);
 			 })
 			 
 			  
@@ -178,20 +181,24 @@ exports.save_by_admin = function(req, res){
 					if(result){
 						if(result.length == 1) {
 							ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
-								 return res.send(1);
+								 setTimeout(function(){
+									return res.end(1); 
+								}, 200);
 
 							});
 						}
 						else
 						{
 						  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
-								 return res.send(1);
+								setTimeout(function(){
+									return res.end(1); 
+								}, 200);
 						  });
 		
 						}
 						
 					}
-				}, 500);
+				}, 200);
 			});
 }	
 
@@ -210,7 +217,7 @@ function get_query(sql,callback) {
 
 				setTimeout(function(){
 					return callback(results);
-				}, 500);
+				}, 200);
 
 
 
@@ -233,7 +240,7 @@ function ins_sql(sql,callback) {
 			var query = connection.query(sql,function(error, results, fields) {
 				setTimeout(function(){
 					return callback(error);
-				}, 500);
+				}, 200);
 
 
 			});
