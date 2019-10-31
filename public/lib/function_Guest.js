@@ -7,7 +7,9 @@ function load_body(zone_id){
     success:function(data) {
 		if(data)
 		{
-			$('#table_1').html(data);
+			setTimeout(function(){  
+				$('#table_1').html(data);
+			}, 1000);
 		}
 			
 	  }
@@ -21,7 +23,6 @@ if(!zone_id)
 	zone_id=zone;
 }	
 
-var startTime = "";
 
 setTimeout(function(){
 
@@ -80,7 +81,7 @@ function change_image(zone,arr=[]){
 }
 
 function change_new_table_col(id=0,table_type=""){
-  if($("#t"+id).attr('class')=="green")
+			if($("#t"+id).attr('class')=="green")
 			{
 
 			   $("#t"+id).attr('class','red');
@@ -106,7 +107,7 @@ function change_color_dm(arr=[],arr_table_type=[]){
 	
 	
 	var id_div = arr.join('_');
-    if($('#t'+id_div+'_merge').attr('class')=="green")
+		   if($('#t'+id_div+'_merge').attr('class')=="green")
 		   {
 		      var div = "";
 		      $('#t'+id_div+'_merge').attr('class','red');
