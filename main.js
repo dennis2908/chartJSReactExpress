@@ -10,10 +10,6 @@ const bodyParser = require('body-parser');
 //use mysql database
 const app = express();
 
-var cookieParser = require('cookie-parser');
-
-app.use(cookieParser());
-
 global.Promise = require('bluebird');
 
 const jwt = require('jsonwebtoken');
