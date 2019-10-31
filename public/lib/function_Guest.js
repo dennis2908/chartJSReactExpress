@@ -84,7 +84,9 @@ if(!zone_id)
 {
 	zone_id=zone;
 }	
-	$.ajax({
+
+setTimeout(function(){
+    $.ajax({
         url: "/crud/save",
         type: "post",
         data: {	
@@ -109,6 +111,9 @@ if(!zone_id)
            console.log(textStatus, errorThrown);
         }
     });
+	
+ }, 600);
+	
 }
 	
 load_body(zone);
