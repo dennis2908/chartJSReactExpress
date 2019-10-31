@@ -43,7 +43,7 @@ exports.get_by_id = function(req, res){
 			//	console.log(req.query.author);
 					  
 				});
-			}, 200);
+			}, 500);
 			
 			setTimeout(function(){
 				if(rows){
@@ -63,7 +63,7 @@ exports.get_by_id = function(req, res){
 						return "";
 					}
 				}
-			}, 200);
+			}, 500);
 			});
   });
 };
@@ -83,7 +83,7 @@ exports.get_by_id_Guest = function(req, res){
 	//	console.log(req.query.author);
 			  
 			});
-	}, 200);
+	}, 500);
 	
 	setTimeout(function(){
 		if(rows){
@@ -96,7 +96,7 @@ exports.get_by_id_Guest = function(req, res){
 					return "";
 				}
 		};
-	}, 200);
+	}, 500);
 	
     });
   });
@@ -121,7 +121,7 @@ exports.get_by_id_Admin = function(req, res){
 				return "";
 			}
 		}
-	}, 200);
+	}, 500);
     });
   });
 };
@@ -154,13 +154,13 @@ exports.save = function(req, res){
 											  });
 										}
 								}
-							}, 200);
+							}, 500);
 							
 						   })
 		
 						}
 					}
-				}, 200);
+				}, 500);
 			 })
 			 
 			  
@@ -191,7 +191,7 @@ exports.save_by_admin = function(req, res){
 						}
 						
 					}
-				}, 200);
+				}, 500);
 			});
 }	
 
@@ -210,7 +210,7 @@ function get_query(sql,callback) {
 
 				setTimeout(function(){
 					return callback(results);
-				}, 200);
+				}, 500);
 
 
 
@@ -233,7 +233,7 @@ function ins_sql(sql,callback) {
 			var query = connection.query(sql,function(error, results, fields) {
 				setTimeout(function(){
 					return callback(error);
-				}, 200);
+				}, 500);
 
 
 			});
