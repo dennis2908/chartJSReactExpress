@@ -167,10 +167,4 @@ function change_image(zone,arr=[]){
 
 				  }    
 				  
-}		
-
-
-function gotopage(){
-	
-	
 }

@@ -80,7 +80,9 @@ function load_body(zone_id){
 			});
 
 	});
-}
+}.catch(function(err) {
+    // handle error here
+});
 
 function save_body(zone_id,zone_to){
 	
@@ -111,6 +113,9 @@ if(!zone_id)
         }
     });
 }
+.catch(function(err) {
+    // handle error here
+});
 
 load_body(zone);
 		 
@@ -134,7 +139,9 @@ function change_image(zone,arr=[]){
 
 				  }    
 
-}
+}.catch(function(err) {
+    // handle error here
+});
 
 function redirect_to(zoneto){
 	  save_body(zone,zoneto);
