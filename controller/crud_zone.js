@@ -205,7 +205,11 @@ function get_query(sql,callback) {
 		database: 'etherus_zone'
    });
 			var query = connection.query(sql, function(error, results, fields) {
-                setTimeout(function(){
+				
+				var startTime = "";
+
+				setTimeout(function(){
+
 					return callback(results);
 				}, 200);
 

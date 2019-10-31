@@ -24,11 +24,6 @@ if(!zone_id)
 var startTime = "";
 
 setTimeout(function(){
-	
-	if (!startTime) {
-        startTime = Date.now();
-    }
-	startTime = (Date.now() - startTime) / 1000;
 
     $.ajax({
         url: "/crud/save",
@@ -63,7 +58,9 @@ setTimeout(function(){
 load_body(zone);
 
 
-function change_image(zone,arr=[]){				   
+function change_image(zone,arr=[]){				
+
+setTimeout(function(){   
 		          for (i = 0; i < arr.length; i++) {
 					if(document.getElementById(arr[i]).className  == "green")
 					{
@@ -78,19 +75,9 @@ function change_image(zone,arr=[]){
 							var container = document.querySelector("#"+arr[i]);
 				  } 
 				  
-				  
+ }, 600);				  
         
 }
-
-function reset_index(){					
-		 $("img").css('z-index','1');
-		 $("div").css('z-index','1');
-		 alert('Z index Reset');
-}	
-
-function redirect_to(zoneto){
-	  save_body(zone,zoneto);
-} 		
 
 function change_new_table_col(id=0,table_type=""){
   if($("#t"+id).attr('class')=="green")
@@ -142,33 +129,9 @@ setTimeout(function(){
 				div +='<div style="float:left;"><img class="'+arr_table_type[i]+'" src="/images/'+arr_table_type[i]+'_green.jpg" width="78" height="68" alt="">'+arr[i]+'</div>';
 			  }
 			  $('#t'+id_div+'_merge').html(div);
-		   }
-	startTime = (Date.now() - startTime) / 1000;	   
+		   }   
 		   
  }, 1000);
 		   
    
 }
-/*
-localStorage['item'] = 10;
-
-timerW();
-
-function timerW()
-{
-	var interval = setInterval(function () {
-	timer = localStorage['item'];
-	console.log(timer);
-    timer--;
-    localStorage['item'] = timer;
-    if (localStorage['item'] == 0) {
-		localStorage['position'] = $(window).scrollTop();
-	//	localStorage.clear();
-	///	localStorage.removeItem('item');
-		clearInterval(interval);
-		save_body(zone);
-    }
-}, 1000);
-}
-
-*/
