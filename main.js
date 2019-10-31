@@ -130,7 +130,6 @@ app.post('/loginto',(req, res) => {
 		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 	    req.session.name = "Console";
 		req.session.author = "Console";
-		req.session.Adminauthor = 'Console';
 		req.session.allzone = token;
 		res.redirect('/allzone');
 	}
@@ -239,10 +238,6 @@ app.post('/loginto',(req, res) => {
 		req.session.zone7 = token;
 		res.redirect('/zone7_only');
 	}
-	else
-	{
-		res.redirect('/login');
-	}
 	
 });
   
@@ -264,11 +259,9 @@ function isAuthenticated(req, res, next) {
 function isAuthenticatedAllZone(req, res, next) {
 	if (req.session.allzone) {
 		app.locals.author = req.session.author;
-		app.locals.Adminauthor = req.session.Adminauthor;
 		app.locals.devauth = req.session.devauth;
 		app.locals.name = req.session.name;
 		app.locals.menu = req.session.menu;
-
 		next();
 	} 
 	else {
@@ -388,15 +381,6 @@ function isAuthenticatedZone7(req, res, next) {
 		res.redirect('/login');
 	}
 }
-
-const http2 = require('http2');
-
-const server = http2.createServer();
-server.on('stream', (stream, requestHeaders) => {
-  stream.respond({ ':status': 200, 'content-type': 'text/plain' });
-  stream.write('hello ');
-  stream.end('world');
-});
 
 //server listening
 app.listen(8082, () => {
