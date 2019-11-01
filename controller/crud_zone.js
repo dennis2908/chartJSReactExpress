@@ -7,13 +7,13 @@ var async = require('async');
 
 var mysql = require('mysql');
 
-    var connection = mysql.createConnection({
+var connection = mysql.createConnection({
        host: "localhost",
        user: "root",
        password: "",
 	   port: 3306,
 		database: 'etherus_zone'
-   });
+});
 
 exports.get_by_id = function(req, res){
 
@@ -82,7 +82,18 @@ exports.get_by_id = function(req, res){
 exports.get_by_id_Guest = function(req, res){
 
   var id = req.query.id;
+  
    req.getConnection(function(err, connection){
+   var mysql = require('mysql');
+
+	  var connection = mysql.createConnection({
+		   host: "localhost",
+		   user: "root",
+		   password: "",
+		   port: 3306,
+			database: 'etherus_zone'
+	   });	   
+	   
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
 	
