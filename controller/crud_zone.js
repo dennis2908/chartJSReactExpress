@@ -5,6 +5,16 @@ const express = require('express');
 const app = express();
 var async = require('async');
 
+var mysql = require('mysql');
+
+    var connection = mysql.createConnection({
+       host: "localhost",
+       user: "root",
+       password: "",
+	   port: 3306,
+		database: 'etherus_zone'
+   });
+
 exports.get_by_id = function(req, res){
 
   var id = req.query.id;
