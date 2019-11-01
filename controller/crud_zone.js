@@ -7,14 +7,6 @@ var async = require('async');
 
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-       host: "localhost",
-       user: "root",
-       password: "",
-	   port: 3306,
-		database: 'etherus_zone'
-});
-
 exports.get_by_id = function(req, res){
 
   var id = req.query.id;
@@ -32,16 +24,6 @@ exports.get_by_id = function(req, res){
 	 sql_script += "UNION ALL SELECT IFNULL( (SELECT body FROM zone WHERE zone_id = 7) ,'') AS body";
   }
   req.getConnection(function(err, connection){
-	  
-	    var mysql = require('mysql');
-
-		var connection = mysql.createConnection({
-			   host: "localhost",
-			   user: "root",
-			   password: "",
-			   port: 3306,
-				database: 'etherus_zone'
-		});
 	   
     connection.query(sql_script, function(err, rows){
 		
@@ -95,14 +77,6 @@ exports.get_by_id_Guest = function(req, res){
   
    req.getConnection(function(err, connection){
    var mysql = require('mysql');
-
-	  var connection = mysql.createConnection({
-		   host: "localhost",
-		   user: "root",
-		   password: "",
-		   port: 3306,
-			database: 'etherus_zone'
-	   });	   
 	   
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
@@ -247,12 +221,7 @@ function get_query(sql,callback) {
    });
 			var query = connection.query(sql, function(error, results, fields) {
 				
-				var startTime = "";
-
-				setTimeout(function(){
-
-					return callback(results);
-				}, 200);
+				return callback(results);
 
 
 			});
@@ -273,9 +242,7 @@ function ins_sql(sql,callback) {
    });
 			var query = connection.query(sql,function(error, results, fields) {
 
-			setTimeout(function(){
-				return callback(error);
-			}, 200);
+			return callback(error);
 				
 
 
