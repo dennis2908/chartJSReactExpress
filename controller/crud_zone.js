@@ -24,6 +24,16 @@ exports.get_by_id = function(req, res){
 	 sql_script += "UNION ALL SELECT IFNULL( (SELECT body FROM zone WHERE zone_id = 7) ,'') AS body";
   }
   req.getConnection(function(err, connection){
+	  
+   var mysql = require('mysql');
+
+   var connection = mysql.createConnection({
+       host: "localhost",
+       user: "root",
+       password: "",
+	   port: 3306,
+		database: 'etherus_zone'
+   });
 	   
     connection.query(sql_script, function(err, rows){
 		
@@ -36,18 +46,23 @@ exports.get_by_id = function(req, res){
 		{
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0";
 		}
-		
-		setTimeout(function(){
-        connection.query(sql_update, function(err, row){
+		var mysql = require('mysql');
+
+	   var connection = mysql.createConnection({
+		   host: "localhost",
+		   user: "root",
+		   password: "",
+		   port: 3306,
+			database: 'etherus_zone'
+	   });
+		connection.query(sql_update, function(err, row){
 				
 			//	console.log(req.query.author);
 					  
-			});
-		}, 200);
+		});
 			
 			
-		setTimeout(function(){
-        if(rows){
+		if(rows){
 				if(rows.length > 0)
 				{
 				  if(id){
@@ -63,8 +78,7 @@ exports.get_by_id = function(req, res){
 				{
 					return "";
 				}
-			}
-		}, 200);	
+		}	
 				
 	});
   });
@@ -77,20 +91,37 @@ exports.get_by_id_Guest = function(req, res){
   
    req.getConnection(function(err, connection){
    var mysql = require('mysql');
+   
+   var mysql = require('mysql');
+
+    var connection = mysql.createConnection({
+       host: "localhost",
+       user: "root",
+       password: "",
+	   port: 3306,
+		database: 'etherus_zone'
+   });
 	   
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
+	var mysql = require('mysql');
+
+    var connection = mysql.createConnection({
+       host: "localhost",
+       user: "root",
+       password: "",
+	   port: 3306,
+		database: 'etherus_zone'
+   });
 	
-	setTimeout(function(){
-        connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
+	
+	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
 		
 		//	console.log(req.query.author);
 				  
-		});
-    }, 200);
+	});
 	
-	setTimeout(function(){
-        if(rows){
+	if(rows){
 			if(rows.length > 0)
 			{
 			  return res.send(rows[0]['body']);	
@@ -99,8 +130,7 @@ exports.get_by_id_Guest = function(req, res){
 			{
 				return "";
 			}
-	}	;
-    }, 200);
+	}
 	
 	
     });
@@ -145,18 +175,15 @@ var zone_id = JSON.parse(JSON.stringify(req.body.id));
 			get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id))+" and admin_sync = 0 and guest_sync = 0", function(result){
 				if(result){
 					if(result.length == 1){
-						setTimeout(function(){
-							ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
+						ins_sql('UPDATE zone set admin_sync = 1,guest_sync = 1, body = '+JSON.stringify(req.body.body)+' where zone_id='+JSON.parse(JSON.stringify(req.body.id)), function(result){
 				 			return res.send("");	 
 							
-							});	
-						}, 200);
+						});	
 					  
 					}
 					else
 					{
-					   setTimeout(function(){
-							get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
+					   get_query("select * from zone WHERE zone_id = "+JSON.parse(JSON.stringify(req.body.id)), function(result){
 							if(result){
 								if(result.length == 0){ 						  
 									  ins_sql('insert into zone(zone_id,body) values ('+JSON.parse(JSON.stringify(req.body.id))+','+JSON.stringify(req.body.body)+')', function(result){
@@ -170,8 +197,7 @@ var zone_id = JSON.parse(JSON.stringify(req.body.id));
 								}
 							}
 							
-						   })
-						}, 200);
+					  })
 	
 					}
 					
