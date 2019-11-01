@@ -32,6 +32,16 @@ exports.get_by_id = function(req, res){
 	 sql_script += "UNION ALL SELECT IFNULL( (SELECT body FROM zone WHERE zone_id = 7) ,'') AS body";
   }
   req.getConnection(function(err, connection){
+	  
+	  var mysql = require('mysql');
+
+		var connection = mysql.createConnection({
+			   host: "localhost",
+			   user: "root",
+			   password: "",
+			   port: 3306,
+				database: 'etherus_zone'
+		});
 	   
     connection.query(sql_script, function(err, rows){
 		
