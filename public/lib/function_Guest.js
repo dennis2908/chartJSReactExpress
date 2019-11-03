@@ -30,17 +30,7 @@ if(!zone_id)
 			id: zone_id
 		} ,
         success: function (response) {
-			/*
-			if(!zone_to)
-			{
-				zone_to = "zone"+zone_id+"_only";
-			}
-
-		    var loc = window.location;
-				 
-		    window.location.href = "/"+zone_to;
-			
-			*/
+			window.location.reload(); 
 			
         },
         error: function(jqXHR, textStatus, errorThrown) {

@@ -118,8 +118,7 @@ if(!zone_id)
 	zone_id=zone;
 }	
 
-setTimeout(function(){
-	$.ajax({
+$.ajax({
         url: "/crud/save",
         type: "post",
         data: {	
@@ -127,29 +126,20 @@ setTimeout(function(){
 			id: zone_id
 		} ,
         success: function (response) {
-		/*		
-			setTimeout(function(){
-				window.location.reload();
-			},
-			500);		
-
-			*/		
-
+			window.location.reload(); 
 			
         },
         error: function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus, errorThrown);
         }
-    });
- }, 1000);
+});
 	
 }
 
 load_body();
 		 
 function change_image(zone,arr=[]){		
-
-setTimeout(function(){   		   
+  		   
                   for (i = 0; i < arr.length; i++) {
 					if(document.getElementById(arr[i]).className  == "blue")
 					{
@@ -168,6 +158,5 @@ setTimeout(function(){
 					}
 
 				  }    
- }, 1000);
 				  
 }
