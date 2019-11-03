@@ -57,8 +57,8 @@ app.set('views',path.join(__dirname,'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.json({limit: '100mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '100mb', extended: true}))
+app.use(bodyParser.json({limit: '999mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '999mb', extended: true}))
 //set folder public sebagai static folder untuk static file
 app.use('/assets',express.static(__dirname + '/public'));
  
@@ -401,13 +401,4 @@ function isAuthenticatedZone7(req, res, next) {
 //server listening
 app.listen(8088, () => {
   console.log('Server is running at port 8088');
-});
-
-app.on('uncaughtException', function (req, res, route, err) {
-  log.info('******* Begin Error *******\n%s\n*******\n%s\n******* End Error *******', route, err.stack);
-  if (!res.headersSent) {
-    return res.send(500, {ok: false});
-  }
-  res.write('\n');
-  res.end();
 });
