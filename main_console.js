@@ -57,8 +57,8 @@ app.set('views',path.join(__dirname,'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.json({limit: '999990mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '999990mb', extended: true}))
+app.use(bodyParser.json({limit: '100mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '100mb', extended: true}))
 //set folder public sebagai static folder untuk static file
 app.use('/assets',express.static(__dirname + '/public'));
  
