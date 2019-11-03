@@ -67,7 +67,7 @@ app.use('/assets',express.static(__dirname + '/public'));
 var zone5_only = require('./routes/zone5');
 var crud = require('./routes/crud'); 
 
-app.use('/zone5_only', zone5_only);
+app.use('/zone5_only', isAuthenticatedZone5Only,zone5_only);
 app.use('/crud', crud);
 app.get('/logout',(req, res) => {
   req.session.destroy();	
@@ -89,6 +89,21 @@ app.get('/',(req, res) => {
 		app.locals.menu = req.session.menu;
 		res.redirect('/zone5_only');
 });
+
+function isAuthenticatedZone5Only(req, res, next) {
+	let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.menu = '';
+		req.session.author = "Guest";
+		req.session.zone1 = token;
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.name = req.session.name;
+		app.locals.menu = req.session.menu;
+		next();
+}
 
 //server listening
 app.listen(8085, () => {

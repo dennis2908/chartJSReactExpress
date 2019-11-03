@@ -117,6 +117,22 @@ body{
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbarCollapse" class="collapse navbar-collapse">
+		<% if(menu){ %>   
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Zone</a>
+                    <div class="dropdown-menu">
+                        <a onclick="redirect_to('zone1')" class="dropdown-item">Zone 1</a>
+                        <a onclick="redirect_to('zone2')" class="dropdown-item">Zone 2</a>
+                        <a onclick="redirect_to('zone3')" class="dropdown-item">Zone 3</a>
+						<a onclick="redirect_to('zone4')" class="dropdown-item" >Zone 4</a>
+						<a  onclick="redirect_to('zone5')" class="dropdown-item">Zone 5</a>
+						<a onclick="redirect_to('zone6')" class="dropdown-item">Zone 6</a>
+						<a onclick="redirect_to('zone7')" class="dropdown-item">Zone 7</a>
+                    </div>
+                </li>
+            </ul>
+		<% }%>	
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%=name%></a>

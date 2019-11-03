@@ -67,7 +67,7 @@ app.use('/assets',express.static(__dirname + '/public'));
 var zone1_only = require('./routes/zone1');
 var crud = require('./routes/crud'); 
 
-app.use('/zone1_only', zone1_only);
+app.use('/zone1_only',isAuthenticatedZone1Only, zone1_only);
 app.use('/crud', crud);
 app.get('/logout',(req, res) => {
   req.session.destroy();	
@@ -90,6 +90,20 @@ app.get('/',(req, res) => {
 		res.redirect('/zone1_only');
 });
 
+function isAuthenticatedZone1Only(req, res, next) {
+	let privateKey = fs.readFileSync('./private.pem', 'utf8');
+		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
+		req.session.name = "Private";
+		req.session.menu = '';
+		req.session.author = "Guest";
+		req.session.zone1 = token;
+		app.locals.author = req.session.author;
+		app.locals.Adminauthor = req.session.Adminauthor;
+		app.locals.devauth = req.session.devauth;
+		app.locals.name = req.session.name;
+		app.locals.menu = req.session.menu;
+		next();
+}
 //server listening
 app.listen(8081, () => {
   console.log('Server is running at port 8081');
