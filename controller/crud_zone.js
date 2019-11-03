@@ -5,8 +5,6 @@ const express = require('express');
 const app = express();
 var async = require('async');
 
-var mysql = require('mysql');
-
 exports.get_by_id = function(req, res){
 
   var id = req.query.id;
@@ -24,16 +22,6 @@ exports.get_by_id = function(req, res){
 	 sql_script += "UNION ALL SELECT IFNULL( (SELECT body FROM zone WHERE zone_id = 7) ,'') AS body";
   }
   req.getConnection(function(err, connection){
-	  
-   var mysql = require('mysql');
-
-   var connection = mysql.createConnection({
-       host: "localhost",
-       user: "root",
-       password: "",
-	   port: 3306,
-		database: 'etherus_zone'
-   });
 	   
     connection.query(sql_script, function(err, rows){
 		
@@ -46,15 +34,7 @@ exports.get_by_id = function(req, res){
 		{
 			var sql_update = "UPDATE zone set "+req.query.author+"_sync = 0";
 		}
-		var mysql = require('mysql');
-
-	   var connection = mysql.createConnection({
-		   host: "localhost",
-		   user: "root",
-		   password: "",
-		   port: 3306,
-			database: 'etherus_zone'
-	   });
+		
 		connection.query(sql_update, function(err, row){
 				
 			//	console.log(req.query.author);
@@ -90,29 +70,8 @@ exports.get_by_id_Guest = function(req, res){
   var id = req.query.id;
   
    req.getConnection(function(err, connection){
-   var mysql = require('mysql');
-   
-   var mysql = require('mysql');
-
-    var connection = mysql.createConnection({
-       host: "localhost",
-       user: "root",
-       password: "",
-	   port: 3306,
-		database: 'etherus_zone'
-   });
 	   
-    connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
-	
-	var mysql = require('mysql');
-
-    var connection = mysql.createConnection({
-       host: "localhost",
-       user: "root",
-       password: "",
-	   port: 3306,
-		database: 'etherus_zone'
-   });
+    connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){
 	
 	
 	connection.query("UPDATE zone set "+req.query.author+"_sync = 0 WHERE zone_id = "+id, function(err, row){
@@ -143,15 +102,6 @@ exports.get_by_id_Admin = function(req, res){
 
   var id = req.query.id;
    req.getConnection(function(err, connection){
-	var mysql = require('mysql');
-
-		var connection = mysql.createConnection({
-			   host: "localhost",
-			   user: "root",
-			   password: "",
-			   port: 3306,
-				database: 'etherus_zone'
-		});
 		
     connection.query("select body from zone WHERE zone_id = ? ", [id], function(err, rows){	
 	
