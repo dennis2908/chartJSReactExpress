@@ -10,6 +10,11 @@ const bodyParser = require('body-parser');
 //use mysql database
 const app = express();
 
+const ipfilter = require('express-ipfilter').IpFilter;
+ 
+// Blacklist the following IPs
+const ips = ['::1',':ffff:127.0.0.1','::ffff:127.0.0.1','::ffff:192.168.43.1'];
+
 global.Promise = require('bluebird');
 
 const jwt = require('jsonwebtoken');
@@ -23,6 +28,9 @@ ejs.open = '{{';
 ejs.close = '}}';
 
 var session = require('express-session');
+
+app.use(ipfilter(ips, { mode: 'allow' }));
+
 
 
 app.use(session({
