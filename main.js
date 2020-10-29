@@ -71,10 +71,8 @@ var crud = require('./routes/crud');
 
 
 app.get('/',isAuthenticatedAllZone,(req, res) => {
-  res.render('Zone1/index.ejs');
+  res.render('allzone/index.ejs');
 });
-
-app.use('/allzone', isAuthenticatedAllZone, allzone);
 
 app.use('/crud', crud);
 
