@@ -376,11 +376,9 @@ function isAuthenticatedZone7(req, res, next) {
 		res.redirect('/login');
 	}
 }
-
+const PORT = process.env.PORT || 4000
 //server listening
-app.listen(8000, () => {
-  console.log('Server is running at port 8000');
-});
+app.listen(PORT, () => console.log(`app listening on port ${PORT}`))
 
 app.on('uncaughtException', function (req, res, route, err) {
   log.info('******* Begin Error *******\n%s\n*******\n%s\n******* End Error *******', route, err.stack);
