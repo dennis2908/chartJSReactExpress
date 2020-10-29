@@ -106,7 +106,7 @@ BODY {
         function showGraph()
         {        
                 hide_canvas();		
-                $.get("crud/get_data1",
+                $.get("/crud/get_data1",
                 function (data)
                 {
                      var name = [];
@@ -192,7 +192,7 @@ BODY {
 		        hide_canvas();
                 $("#graphCanvas2").show();
 
-                $.get("crud/get_data1",
+                $.get("/crud/get_data1",
                 function (data)
                 {
                      var name = [];
@@ -257,7 +257,7 @@ BODY {
 		function showGraph3()
         {        
                 hide_canvas();		
-                $.get("crud/get_data2",
+                $.get("/crud/get_data2",
                 function (data)
                 {
                      var name = [];
