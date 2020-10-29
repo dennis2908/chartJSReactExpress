@@ -118,8 +118,8 @@ function isAuthenticatedAllZone(req, res, next) {
 	}
 }
 
-const PORT = process.env.PORT || 4000
-//server listening
-app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
+app.listen(process.env.PORT || 3000, function() {
+    console.log('server running on port 3000', '');
+});
 
 	
