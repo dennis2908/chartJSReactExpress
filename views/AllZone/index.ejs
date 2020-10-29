@@ -233,19 +233,8 @@ BODY {
 		function showGraph3()
         {        
                 hide_canvas();		
-                $.get("/crud/get_data2",
-                function (data)
-                {
-                     var name = [];
-                    var marks = [];
-
-                    for (var i in data) {
-                        name.push(data[i].student_name);
-                        marks.push(data[i].marks);
-                    }
-
                     var chartdata = {
-                        labels: name,
+                        labels:  [ "John", "Mary ", "Maya", "Rahul", "Priya" ],
                         datasets: [
                             {
                                 label: 'Student Marks',
@@ -253,7 +242,7 @@ BODY {
                                 borderColor: '#46d5f1',
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: marks
+                                data: [ 39, 46, 65, 90, 75 ]
                             }
                         ]
                     };
@@ -275,8 +264,6 @@ BODY {
                     }
                 }
                     });
-                });
-           
         }
         </script>
 
