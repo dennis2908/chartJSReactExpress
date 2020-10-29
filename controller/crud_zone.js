@@ -5,6 +5,9 @@ const express = require('express');
 const app = express();
 var async = require('async');
 
+const format = require('pg-format');
+const pool = require('../database.js');
+
 exports.get_by_id = function(req, res){
 
   var id = req.query.id;
@@ -117,6 +120,31 @@ exports.get_by_id_Admin = function(req, res){
 	}	
     });
   });
+};
+
+exports.get_data1 = function(req, res){
+   
+   pool.connect(function (err, client, done) {
+    if (err) throw new Error(err);
+    var ageQuery = format("SELECT bulan,hasil_penjualan FROM penjualan WHERE tahun='2016' order by id asc")
+    client.query(ageQuery, function (err, result) {
+      if (err) throw new Error(err);
+      res.json(result.rows); 
+    })
+  }); 
+   
+};
+
+exports.get_data2 = function(req, res){
+
+  pool.connect(function (err, client, done) {
+    if (err) throw new Error(err);
+    var ageQuery = format("SELECT student_id,student_name,marks FROM tbl_marks ORDER BY student_id")
+    client.query(ageQuery, function (err, result) {
+      if (err) throw new Error(err);
+      res.json(result.rows); 
+    })
+  }); 
 };
 
 exports.save = function(req, res){

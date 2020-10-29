@@ -38,14 +38,28 @@ app.use(session({
 var mysql = require('mysql'),
     connection = require('express-myconnection'),
     config = {
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      port: 3306,
-      database: 'etherus_zone'
+      host: 'ec2-52-203-165-126.compute-1.amazonaws.com',
+      user: 'xgscfugknrlsrm',
+      password: '6d7fbb14581220e58426c74020a8e0341b1392bdf267df4eea74a0a9016a550f',
+      port: 5432,
+      database: 'd55elu3a9h380s'
 };
 
+var pg = require('pg')
+var config = {
+  user: 'postgres',
+  host: 'localhost',
+  database: 'penjualan',
+  password: '12345',
+  port: 5432,
+}
+
+var pool = new pg.Pool(config);
+
+module.exports = pool;
+
 app.use(connection(mysql, config, 'request'));		
+app.use(connection(pool, config, 'request'));	
 	
 app.use(express.static(__dirname + '/public'));
 
@@ -81,6 +95,7 @@ var zone5_only = require('./routes/zone5');
 var zone6_only = require('./routes/zone6');
 var zone7_only = require('./routes/zone7');
 var crud = require('./routes/crud'); 
+var dataapi = require('./routes/dataapi'); 
 
 process.on('unhandledRejection', (error, promise) => {
   console.log(' Oh Lord! We forgot to handle a promise rejection here: ', promise);
@@ -109,6 +124,7 @@ app.use('/zone5_only', isAuthenticatedZone5, zone5_only);
 app.use('/zone6_only', isAuthenticatedZone6, zone6_only);
 app.use('/zone7_only', isAuthenticatedZone7, zone7_only);
 app.use('/crud', crud);
+app.use('/dataapi', dataapi);
 
 app.get('/login',(req, res) => {
   res.render('Login/index.ejs');

@@ -5,14 +5,27 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node main.js"
+    "start": "node main.js"
   },
   "author": "dennis",
   "license": "dennis",
   "dependencies": {
+    "async": "^3.2.0",
+    "bluebird": "^3.7.2",
     "body-parser": "^1.18.3",
+    "ejs-blocks": "^0.1.4",
+    "ejs-mate": "^3.0.0",
     "express": "^4.16.3",
-    "hbs": "^4.0.1",
-    "mysql": "^2.16.0"
+    "express-ejs-layouts": "^2.5.0",
+    "express-flash-messages": "^0.1.1",
+    "express-ipfilter": "^1.1.2",
+    "express-myconnection": "^1.0.4",
+    "express-partials": "^0.3.0",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "pg": "^8.4.2",
+    "pg-format": "^1.0.4"
   }
 }
