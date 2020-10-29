@@ -125,10 +125,7 @@ exports.get_by_id_Admin = function(req, res){
 exports.get_data1 = function(req, res){
    
    pool.connect(function (err, client, done) {
-    if (err) throw new Error(err);
-    var ageQuery = format("SELECT bulan,hasil_penjualan FROM penjualan WHERE tahun='2016' order by id asc")
-    client.query(ageQuery, function (err, result) {
-      if (err) throw new Error(err);
+    client.query("SELECT bulan,hasil_penjualan FROM penjualan WHERE tahun='2016' order by id asc", function (err, result) {
       res.json(result.rows); 
     })
   }); 
@@ -138,10 +135,7 @@ exports.get_data1 = function(req, res){
 exports.get_data2 = function(req, res){
 
   pool.connect(function (err, client, done) {
-    if (err) throw new Error(err);
-    var ageQuery = format("SELECT student_id,student_name,marks FROM tbl_marks ORDER BY student_id")
-    client.query(ageQuery, function (err, result) {
-      if (err) throw new Error(err);
+    client.query("SELECT student_id,student_name,marks FROM tbl_marks ORDER BY student_id", function (err, result) {
       res.json(result.rows); 
     })
   }); 
