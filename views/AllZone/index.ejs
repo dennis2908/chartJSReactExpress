@@ -106,9 +106,19 @@ BODY {
         function showGraph()
         {        
                 hide_canvas();		
+                $.get("/crud/get_data1",
+                function (data)
+                {
+                     var name = [];
+                    var marks = [];
+
+                    for (var i in data) {
+                        name.push(data[i].bulan);
+                        marks.push(data[i].hasil_penjualan);
+                    }
 
                     var chartdata = {
-                        labels:  ["January", "February", "Maret", "April", "Juni", "July", "Agustus", "September", "Oktober", "November","December" ],
+                        labels: name,
                         datasets: [
                             {
                                 label: 'Penjualan',
@@ -143,7 +153,7 @@ BODY {
                             borderWidth: 1,
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: [10000000, 12000000, 13000000, 18000000, 14000000, 15000000, 12000000, 19000000, 12000000, 12000000,20000000]
+                                data: marks
                             }
                         ]
                     };
@@ -171,8 +181,9 @@ BODY {
                                 }
                             }]
                     }
-					}
+                }
                     });
+                });
            
         }
 		
@@ -180,8 +191,20 @@ BODY {
         {
 		        hide_canvas();
                 $("#graphCanvas2").show();
+
+                $.get("/crud/get_data1",
+                function (data)
+                {
+                     var name = [];
+                    var marks = [];
+
+                    for (var i in data) {
+                        name.push(data[i].bulan);
+                        marks.push(data[i].hasil_penjualan);
+                    }
+
                     var chartdata = {
-                        labels: ["January", "February", "Maret", "April", "Juni", "July", "Agustus", "September", "Oktober", "November","December" ],
+                        labels: name,
                         datasets: [
                             {
                                 label: 'Penjualan',
@@ -189,7 +212,7 @@ BODY {
                                 borderColor: '#46d5f1',
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: [10000000, 12000000, 13000000, 18000000, 14000000, 15000000, 12000000, 19000000, 12000000, 12000000,20000000],
+                                data: marks,
 				backgroundColor: [
 				'rgba(255, 99, 132, 0.2)',
 				'rgba(54, 162, 235, 0.2)'
@@ -227,14 +250,26 @@ BODY {
                     }
                 }
                     });
+                });
             
         }
 		
 		function showGraph3()
         {        
                 hide_canvas();		
+                $.get("/crud/get_data2",
+                function (data)
+                {
+                     var name = [];
+                    var marks = [];
+
+                    for (var i in data) {
+                        name.push(data[i].student_name);
+                        marks.push(data[i].marks);
+                    }
+
                     var chartdata = {
-                        labels:  [ "John", "Mary ", "Maya", "Rahul", "Priya" ],
+                        labels: name,
                         datasets: [
                             {
                                 label: 'Student Marks',
@@ -242,7 +277,7 @@ BODY {
                                 borderColor: '#46d5f1',
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: [ 39, 46, 65, 90, 75 ]
+                                data: marks
                             }
                         ]
                     };
@@ -264,6 +299,8 @@ BODY {
                     }
                 }
                     });
+                });
+           
         }
         </script>
 

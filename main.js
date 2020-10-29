@@ -74,8 +74,6 @@ app.get('/',isAuthenticatedAllZone,(req, res) => {
   res.render('allzone/index.ejs');
 });
 
-app.use('/allzone', isAuthenticatedAllZone, allzone);
-
 app.use('/crud', crud);
 
 app.get('/login',(req, res) => {
