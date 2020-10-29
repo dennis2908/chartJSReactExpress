@@ -74,6 +74,8 @@ app.get('/',isAuthenticatedAllZone,(req, res) => {
   res.render('allzone/index.ejs');
 });
 
+app.use('/allzone', isAuthenticatedAllZone, allzone);
+
 app.use('/crud', crud);
 
 app.get('/login',(req, res) => {
@@ -99,7 +101,7 @@ app.post('/loginto',(req, res) => {
 	    req.session.name = "Console";
 		req.session.author = "Console";
 		req.session.allzone = token;
-		res.redirect('/');
+		res.redirect('/allzone');
 	}
 
 });
