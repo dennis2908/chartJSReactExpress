@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 //use mysql database
 const app = express();
 
+
+
 global.Promise = require('bluebird');
 
 const jwt = require('jsonwebtoken');
@@ -37,7 +39,18 @@ app.use(session({
 
 	
 app.use(express.static(__dirname + '/public'));
+var cors = require('cors');
 
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+);
+app.options('*', cors());
+
+
+var cors = require('cors');
 
 //set views file
 app.set('views',path.join(__dirname,'views'));
