@@ -35,31 +35,6 @@ app.use(session({
   }
 }));
 
-var mysql = require('mysql'),
-    connection = require('express-myconnection'),
-    config = {
-      host: 'ec2-52-203-165-126.compute-1.amazonaws.com',
-      user: 'xgscfugknrlsrm',
-      password: '6d7fbb14581220e58426c74020a8e0341b1392bdf267df4eea74a0a9016a550f',
-      port: 5432,
-      database: 'd55elu3a9h380s'
-};
-
-var pg = require('pg')
-var config = {
-  user: 'postgres',
-  host: 'localhost',
-  database: 'penjualan',
-  password: '12345',
-  port: 5432,
-}
-
-var pool = new pg.Pool(config);
-
-module.exports = pool;
-
-app.use(connection(mysql, config, 'request'));		
-app.use(connection(pool, config, 'request'));	
 	
 app.use(express.static(__dirname + '/public'));
 
@@ -403,8 +378,8 @@ function isAuthenticatedZone7(req, res, next) {
 }
 
 //server listening
-app.listen(8082, () => {
-  console.log('Server is running at port 8082');
+app.listen(8000, () => {
+  console.log('Server is running at port 8000');
 });
 
 app.on('uncaughtException', function (req, res, route, err) {
