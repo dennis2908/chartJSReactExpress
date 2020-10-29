@@ -99,7 +99,7 @@ app.post('/loginto',(req, res) => {
 	    req.session.name = "Console";
 		req.session.author = "Console";
 		req.session.allzone = token;
-		res.redirect('/allzone');
+		res.redirect('/');
 	}
 
 });
