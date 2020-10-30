@@ -106,19 +106,8 @@ BODY {
         function showGraph()
         {        
                 hide_canvas();		
-                $.get("/crud/get_data1",
-                function (data)
-                {
-                     var name = [];
-                    var marks = [];
-
-                    for (var i in data) {
-                        name.push(data[i].bulan);
-                        marks.push(data[i].hasil_penjualan);
-                    }
-
-                    var chartdata = {
-                        labels: name,
+                var chartdata = {
+                        labels: ["January", "February", "Maret", "April", "Juni", "July", "Agustus", "September", "Oktober", "November",'Desember'],
                         datasets: [
                             {
                                 label: 'Penjualan',
@@ -153,7 +142,7 @@ BODY {
                             borderWidth: 1,
                                 hoverBackgroundColor: '#CCCCCC',
                                 hoverBorderColor: '#666666',
-                                data: marks
+                                data: [ 10000000, 12000000, 13000000, 18000000, 14000000, 15000000, 12000000, 19000000, 12000000, 12000000,20000000]
                             }
                         ]
                     };
@@ -183,7 +172,6 @@ BODY {
                     }
                 }
                     });
-                });
            
         }
 		

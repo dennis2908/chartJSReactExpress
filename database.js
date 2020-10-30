@@ -7,7 +7,7 @@ var config = {
   port: 5432,
   max: 10000, // max number of clients in the pool
   idleTimeoutMillis: 30000,
-  ssl: { rejectUnauthorized: true }   
+  ssl: { rejectUnauthorized: false }   
 }
 var pool = new pg.Pool(config);
 module.exports = pool;
