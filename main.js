@@ -22,7 +22,6 @@ ejs.close = '}}';
 
 var session = require('express-session');
 
-app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: '32832113209138209132890oaejlkewjlkweqjlkweqjlkqewqewljkljk',
   resave: false,
