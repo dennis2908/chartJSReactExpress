@@ -22,11 +22,11 @@ ejs.close = '}}';
 
 var session = require('express-session');
 
-
+app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: '32832113209138209132890oaejlkewjlkweqjlkweqjlkqewqewljkljk',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
         expires: new Date(253402300000000)
 		
@@ -78,7 +78,7 @@ app.post('/loginto',(req, res) => {
 	if(username=="console" && password=="myconsole")
 	{
 	    req.session.name = "Console";
-		res.redirect('/allzone');
+		res.redirect('/');
 	}
 
 });
