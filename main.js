@@ -28,8 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-        expires: new Date(253402300000000),
-		secure: true 
+        expires: new Date(253402300000000)
 		
   }
 }));
