@@ -3,16 +3,12 @@
 const path = require('path');
 //use express module
 const express = require('express');
-//use hbs view engine
-const hbs = require('hbs');
 //use bodyParser middleware
 const bodyParser = require('body-parser');
 //use mysql database
 const app = express();
 
 
-
-global.Promise = require('bluebird');
 
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
