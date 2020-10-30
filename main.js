@@ -94,10 +94,6 @@ app.post('/loginto',(req, res) => {
 	
 	if(username=="console" && password=="myconsole")
 	{
-		let privateKey = fs.readFileSync('./private.pem', 'utf8');
-		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
-	    req.session.name = "Console";
-		req.session.author = "Console";
 		req.session.allzone = token;
 		res.redirect('/allzone');
 	}
@@ -107,8 +103,6 @@ app.post('/loginto',(req, res) => {
 
 function isAuthenticatedAllZone(req, res, next) {
 	if (req.session.allzone) {
-		app.locals.author = req.session.author;
-		app.locals.name = req.session.name;
 		next();
 	} 
 	else {
