@@ -90,11 +90,10 @@ app.get('/logout',(req, res) => {
 app.post('/loginto',(req, res) => {
 	var username = req.body.username;
 	var password = req.body.password;
-	req.session.admin = 0;
 	
 	if(username=="console" && password=="myconsole")
 	{
-		req.session.allzone = token;
+		req.session.username = username;
 		res.redirect('/allzone');
 	}
 
@@ -102,7 +101,7 @@ app.post('/loginto',(req, res) => {
   
 
 function isAuthenticatedAllZone(req, res, next) {
-	if (req.session.allzone) {
+	if (req.session.username) {
 		next();
 	} 
 	else {
@@ -110,8 +109,8 @@ function isAuthenticatedAllZone(req, res, next) {
 	}
 }
 
-app.listen(process.env.PORT || 4000, function() {
-    console.log('server running on port 4000', '');
+app.listen(process.env.PORT || 8000, function() {
+    console.log('server running on port 8000', '');
 });
 
 	
