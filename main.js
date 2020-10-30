@@ -51,7 +51,7 @@ app.use('/assets',express.static(__dirname + '/public'));
 //route untuk homepage
 
 var allzone = require('./routes/allzone'); 
-var crud = require('./routes/crud'); 
+//var crud = require('./routes/crud'); 
 
 
 app.get('/',isAuthenticatedAllZone,(req, res) => {
