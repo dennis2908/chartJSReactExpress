@@ -35,18 +35,6 @@ app.use(session({
 
 	
 app.use(express.static(__dirname + '/public'));
-var cors = require('cors');
-
-app.use(
-    cors({
-        credentials: true,
-        origin: true
-    })
-);
-app.options('*', cors());
-
-
-var cors = require('cors');
 
 //set views file
 app.set('views',path.join(__dirname,'views'));
@@ -86,15 +74,10 @@ app.get('/logout',(req, res) => {
 app.post('/loginto',(req, res) => {
 	var username = req.body.username;
 	var password = req.body.password;
-	req.session.admin = 0;
 	
 	if(username=="console" && password=="myconsole")
 	{
-		let privateKey = fs.readFileSync('./private.pem', 'utf8');
-		let token = jwt.sign({ "body": "authorization" }, privateKey, { algorithm: 'HS256'});
 	    req.session.name = "Console";
-		req.session.author = "Console";
-		req.session.allzone = token;
 		res.redirect('/allzone');
 	}
 
@@ -102,9 +85,7 @@ app.post('/loginto',(req, res) => {
   
 
 function isAuthenticatedAllZone(req, res, next) {
-	if (req.session.allzone) {
-		app.locals.author = req.session.author;
-		app.locals.name = req.session.name;
+	if (req.session.name) {
 		next();
 	} 
 	else {
@@ -112,8 +93,8 @@ function isAuthenticatedAllZone(req, res, next) {
 	}
 }
 
-app.listen(process.env.PORT || 4000, function() {
-    console.log('server running on port 4000', '');
+app.listen(process.env.PORT || 3000, function() {
+    console.log('server running on port 3000', '');
 });
 
 	
