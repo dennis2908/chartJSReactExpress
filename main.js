@@ -74,10 +74,6 @@ app.get('/',isAuthenticatedAllZone,(req, res) => {
   res.render('allzone/index.ejs');
 });
 
-app.get('/allzone',isAuthenticatedAllZone,(req, res) => {
-  res.render('allzone/index.ejs');
-});
-
 app.use('/crud', crud);
 
 app.get('/login',(req, res) => {
@@ -120,7 +116,7 @@ function isAuthenticatedAllZone(req, res, next) {
 	}
 }
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 4000, function() {
     console.log('server running on port 4000', '');
 });
 
