@@ -41,16 +41,7 @@ app.use(session({
 app.use(express.static(__dirname + '/public'));
 var cors = require('cors');
 
-app.use(
-    cors({
-        credentials: true,
-        origin: true
-    })
-);
-app.options('*', cors());
-
-
-var cors = require('cors');
+app.use(cors())
 
 //set views file
 app.set('views',path.join(__dirname,'views'));
@@ -74,10 +65,6 @@ app.get('/',isAuthenticatedAllZone,(req, res) => {
   res.render('AllZone/index.ejs');
 });
 
-app.get('/allzone',isAuthenticatedAllZone,(req, res) => {
-  res.render('AllZone/index.ejs');
-});
-
 app.use('/crud', crud);
 
 app.get('/login',(req, res) => {
@@ -91,16 +78,35 @@ app.get('/logout',(req, res) => {
  
 
  
-app.post('/loginto',(req, res) => {
+app.post('/login',(req, res) => {
 	var username = req.body.username;
 	var password = req.body.password;
 	
 	if(username=="console" && password=="myconsole")
 	{
 		req.session.username = username;
-		res.redirect('/allzone');
 	}
 
+	res.redirect('/');
+});
+
+app.post('/loginFrontEnd',(req, res) => {
+	let username = req.body.username;
+	let password = req.body.password;
+	
+	if(username=="console" && password=="myconsole")
+	{
+		res.json(username);
+	}
+	else{
+	   res.json(false);	
+	}
+	
+});
+
+app.get('/logout',(req, res) => {
+  req.session.destroy();	
+  res.redirect('/');
 });
   
 
@@ -116,5 +122,3 @@ function isAuthenticatedAllZone(req, res, next) {
 app.listen(process.env.PORT || 8000, function() {
     console.log('server running on port 8000', '');
 });
-
-	
